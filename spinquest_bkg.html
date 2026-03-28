@@ -68,7 +68,7 @@
 
 									<h3>Stage 2 &mdash; MC Simulation Tuning</h3>
 									<p>
-										The combinatoric background MC must be tuned to match the momentum and mass distributions of classified experimental background before it can be used for training. This tuning is handled by the
+										The combinatoric background MC must be tuned to match the distributions of the classifier input features &mdash; including kinematic and momentum variables &mdash; of classified experimental background before it can be used for training (see the <a href="https://github.com/forhad-h2030/spinquest-combinatoric-bkg/tree/main/data" target="_blank" rel="noopener noreferrer"><code>data/</code> directory</a> in the repository for the full feature set). This tuning is handled by the
 										<a href="spinquest-agentic-tuner.html">SpinQuest Agentic MC Tuner</a> &mdash; an LLM-driven pipeline using normalizing flow rejection sampling and BDT mass reweighting to bring the MC into agreement with data.
 									</p>
 
