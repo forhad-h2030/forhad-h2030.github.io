@@ -57,6 +57,18 @@
 									</header>
 									<div class="features">
 										<article>
+											<span class="icon solid fa-robot"></span>
+											<div class="content">
+												<h3>Machine Learning &amp; AI</h3>
+												<ul>
+													<li>Agentic AI</li>
+													<li>Normalizing flows &amp; generative models</li>
+													<li>Deep neural networks (DNNs)</li>
+													<li>Bayesian unfolding</li>
+												</ul>
+											</div>
+										</article>
+										<article>
 											<span class="icon solid fa-code"></span>
 											<div class="content">
 												<h3>Programming Languages</h3>
@@ -77,18 +89,6 @@
 													<li>Fun4All, RooUnfold</li>
 													<li>Scikit-HEP</li>
 													<li>HPC: Rivanna &amp; FermiGrid</li>
-												</ul>
-											</div>
-										</article>
-										<article>
-											<span class="icon solid fa-robot"></span>
-											<div class="content">
-												<h3>Machine Learning &amp; AI</h3>
-												<ul>
-													<li>Agentic AI</li>
-													<li>Normalizing flows &amp; generative models</li>
-													<li>Deep neural networks (DNNs)</li>
-													<li>Bayesian unfolding</li>
 												</ul>
 											</div>
 										</article>
@@ -114,6 +114,26 @@
 									</header>
 									<div class="posts">
 										<article>
+											<a href="spinquest-agentic-tuner.html" class="image"><img src="images/spinquest_agentic_overlay.png" alt="SpinQuest Agentic MC Tuner — overlay of tuned MC vs experimental data" /></a>
+											<h3><a href="spinquest-agentic-tuner.html">SpinQuest Agentic MC Tuner</a></h3>
+											<p>An LLM-driven agentic AI system (Ollama/llama3, ReAct loop) that autonomously tunes combinatoric background MC to match experimental data for the SpinQuest Drell&ndash;Yan experiment. Achieves KS&thinsp;=&thinsp;0.043 via two-phase normalizing flow &amp; BDT reweighting.</p>
+											<ul class="actions">
+												<li><a class="button">LLM agent</a></li>
+												<li><a class="button">normalizing flows</a></li>
+												<li><a class="button">pytorch</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="spinquest_bkg.html" class="image"><img src="images/spinquest_bkg.jpg" alt="SpinQuest Combinatoric Background Classifier" /></a>
+											<h3><a href="spinquest_bkg.html">SpinQuest Combinatoric Background Classifier</a></h3>
+											<p>An iterative multi-model DNN pipeline for SpinQuest dimuon classification. Binary DNNs sequentially classify J/&psi;, &psi;&prime;, Drell&ndash;Yan, and combinatoric background events; MC simulation is tuned to experimental data (see <a href="spinquest-agentic-tuner.html">Agentic MC Tuner</a>); a final 4-class softmax DNN performs simultaneous multiclass classification.</p>
+											<ul class="actions">
+												<li><a class="button">pytorch</a></li>
+												<li><a class="button">DNNs</a></li>
+												<li><a class="button">multiclass classification</a></li>
+											</ul>
+										</article>
+										<article>
 											<a href="rus.html" class="image">
 												<div style="width:100%;height:175px;background:#1a2a3a;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
 													<span style="font-size:38px;line-height:1;color:#7ab3d4;">&#60;&#47;&#62;</span>
@@ -129,52 +149,7 @@
 												<li><a class="button">ROOT</a></li>
 											</ul>
 										</article>
-										<article>
-											<a href="spinquest_bkg.html" class="image"><img src="images/spinquest_bkg.jpg" alt="SpinQuest Combinatoric Background Classifier" /></a>
-											<h3><a href="spinquest_bkg.html">SpinQuest Combinatoric Background Classifier</a></h3>
-											<p>An iterative multi-model DNN pipeline for SpinQuest dimuon classification. Binary DNNs sequentially classify J/&psi;, &psi;&prime;, Drell&ndash;Yan, and combinatoric background events; MC simulation is tuned to experimental data (see <a href="spinquest-agentic-tuner.html">Agentic MC Tuner</a>); a final 4-class softmax DNN performs simultaneous multiclass classification.</p>
-											<ul class="actions">
-												<li><a class="button">pytorch</a></li>
-												<li><a class="button">DNNs</a></li>
-												<li><a class="button">multiclass classification</a></li>
-											</ul>
-										</article>
-										<article>
-											<a href="spinquest-agentic-tuner.html" class="image"><img src="images/spinquest_agentic_overlay.png" alt="SpinQuest Agentic MC Tuner — overlay of tuned MC vs experimental data" /></a>
-											<h3><a href="spinquest-agentic-tuner.html">SpinQuest Agentic MC Tuner</a></h3>
-											<p>An LLM-driven agentic AI system (Ollama/llama3, ReAct loop) that autonomously tunes combinatoric background MC to match experimental data for the SpinQuest Drell&ndash;Yan experiment. Achieves KS&thinsp;=&thinsp;0.043 via two-phase normalizing flow &amp; BDT reweighting.</p>
-											<ul class="actions">
-												<li><a class="button">LLM agent</a></li>
-												<li><a class="button">normalizing flows</a></li>
-												<li><a class="button">pytorch</a></li>
-											</ul>
-										</article>
 									</div>
-								</section>
-
-							<!-- Education -->
-								<section>
-									<header class="major">
-										<h2>Education</h2>
-									</header>
-
-									<div style="clear: both">
-										<h3 style="float: left">New Mexico State University</h3>
-										<hplain2>&emsp;<span>&#8226;</span>&emsp;<i>May 2018 &ndash; May 2024</i></hplain2>
-									</div>
-									<br />
-									<p>
-										I completed my Ph.D. in Physics under the supervision of Dr. Stephen Pate, applying Bayesian Iterative Unfolding and machine learning to extract angular distributions of Drell&ndash;Yan dimuons in proton&ndash;iron interactions at 120 GeV. Along the way I served as onsite hardware expert for the SpinQuest experiment trigger system installation, including NIM, CAMAC, and VME electronics, and developed Python and C++ pipelines for PMT optimization and data quality monitoring.
-									</p>
-									<p><i>Ph.D. Thesis: &ldquo;Angular Distribution of Dimuons from Drell&ndash;Yan Production in p+Fe Interactions at 120 GeV Beam Energy&rdquo;</i></p>
-									<p><i>M.S. in Physics &mdash; New Mexico State University, 2018&ndash;2021</i></p>
-
-									<div style="clear: both">
-										<h3 style="float: left">Jagannath University, Dhaka, Bangladesh</h3>
-										<hplain2>&emsp;<span>&#8226;</span>&emsp;<i>2006 &ndash; 2014</i></hplain2>
-									</div>
-									<br />
-									<p>B.Sc. in Physics (2006&ndash;2012) &nbsp;&bull;&nbsp; M.Sc. in Physics (2012&ndash;2014)</p>
 								</section>
 
 							<!-- Research Experience -->
@@ -217,6 +192,31 @@
 										<p style="margin-bottom:1em;"></p>
 										<p>Instructed introductory physics laboratory courses and provided individual tutoring for undergraduate students.</p>
 									</div>
+								</section>
+
+							<!-- Education -->
+								<section>
+									<header class="major">
+										<h2>Education</h2>
+									</header>
+
+									<div style="clear: both">
+										<h3 style="float: left">New Mexico State University</h3>
+										<hplain2>&emsp;<span>&#8226;</span>&emsp;<i>May 2018 &ndash; May 2024</i></hplain2>
+									</div>
+									<br />
+									<p>
+										I completed my Ph.D. in Physics under the supervision of Dr. Stephen Pate, applying Bayesian Iterative Unfolding and machine learning to extract angular distributions of Drell&ndash;Yan dimuons in proton&ndash;iron interactions at 120 GeV. Along the way I served as onsite hardware expert for the SpinQuest experiment trigger system installation, including NIM, CAMAC, and VME electronics, and developed Python and C++ pipelines for PMT optimization and data quality monitoring.
+									</p>
+									<p><i>Ph.D. Thesis: &ldquo;Angular Distribution of Dimuons from Drell&ndash;Yan Production in p+Fe Interactions at 120 GeV Beam Energy&rdquo;</i></p>
+									<p><i>M.S. in Physics &mdash; New Mexico State University, 2018&ndash;2021</i></p>
+
+									<div style="clear: both">
+										<h3 style="float: left">Jagannath University, Dhaka, Bangladesh</h3>
+										<hplain2>&emsp;<span>&#8226;</span>&emsp;<i>2006 &ndash; 2014</i></hplain2>
+									</div>
+									<br />
+									<p>B.Sc. in Physics (2006&ndash;2012) &nbsp;&bull;&nbsp; M.Sc. in Physics (2012&ndash;2014)</p>
 								</section>
 
 							<!-- Publications -->
@@ -263,6 +263,29 @@
 											<b>M. F. Hossain</b> <i>et al.</i> (SeaQuest Collaboration). &ldquo;Angular Distribution of Drell&ndash;Yan Muon Pairs Produced in Proton&ndash;Iron Interactions with a 120 GeV Proton Beam at SeaQuest.&rdquo; <i>Intended for Physical Review Letters</i>, 2026.
 										</li>
 									</ol>
+								</section>
+
+							<!-- Collaborations -->
+								<section>
+									<header class="major">
+										<h2>Experimental Collaborations</h2>
+									</header>
+									<div class="features">
+										<article>
+											<span class="icon solid fa-magnet"></span>
+											<div class="content">
+												<h3><a href="https://spinquest.fnal.gov/" target="_blank" rel="noopener noreferrer">SpinQuest (E1039) &mdash; Fermilab</a></h3>
+												<p>Fixed-target Drell&ndash;Yan experiment measuring the transverse single-spin asymmetry (TSSA) to extract the Sivers function of sea quarks, using a 120 GeV polarized proton beam with NH&#8323;/ND&#8323; cryogenic targets at Fermilab.</p>
+											</div>
+										</article>
+										<article>
+											<span class="icon solid fa-circle-nodes"></span>
+											<div class="content">
+												<h3><a href="https://www.phy.anl.gov/mep/drell-yan/" target="_blank" rel="noopener noreferrer">SeaQuest (E906) &mdash; Fermilab</a></h3>
+												<p>Fixed-target Drell&ndash;Yan experiment measuring the cross-section ratio p+d/p+p to determine the antiquark flavor asymmetry d&#773;/&#363; in the proton sea at Fermilab.</p>
+											</div>
+										</article>
+									</div>
 								</section>
 
 							<!-- Presentations -->
@@ -319,29 +342,6 @@
 									<div class="row">
 										<hplain><b><a href="https://www.osti.gov/biblio/1571785" target="_blank" rel="noopener noreferrer">52nd Fermilab Users Organization Annual Meeting</a></b>&ensp;<span>&#8226;</span>&ensp;<i>Poster</i></hplain>
 										<p>&ldquo;Commissioning Trigger for SpinQuest/E1039&rdquo;</p>
-									</div>
-								</section>
-
-							<!-- Collaborations -->
-								<section>
-									<header class="major">
-										<h2>Experimental Collaborations</h2>
-									</header>
-									<div class="features">
-										<article>
-											<span class="icon solid fa-magnet"></span>
-											<div class="content">
-												<h3><a href="https://spinquest.fnal.gov/" target="_blank" rel="noopener noreferrer">SpinQuest (E1039) &mdash; Fermilab</a></h3>
-												<p>Fixed-target Drell&ndash;Yan experiment measuring the transverse single-spin asymmetry (TSSA) to extract the Sivers function of sea quarks, using a 120 GeV polarized proton beam with NH&#8323;/ND&#8323; cryogenic targets at Fermilab.</p>
-											</div>
-										</article>
-										<article>
-											<span class="icon solid fa-circle-nodes"></span>
-											<div class="content">
-												<h3><a href="https://www.phy.anl.gov/mep/drell-yan/" target="_blank" rel="noopener noreferrer">SeaQuest (E906) &mdash; Fermilab</a></h3>
-												<p>Fixed-target Drell&ndash;Yan experiment measuring the cross-section ratio p+d/p+p to determine the antiquark flavor asymmetry d&#773;/&#363; in the proton sea at Fermilab.</p>
-											</div>
-										</article>
 									</div>
 								</section>
 
