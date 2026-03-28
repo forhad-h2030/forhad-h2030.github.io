@@ -38,7 +38,7 @@
 
 									<!-- Intro -->
 									<p>
-										An agentic AI system that uses a local LLM (Ollama/llama3) in a <strong>ReAct (Reason&thinsp;+&thinsp;Act) loop</strong> to autonomously tune Monte Carlo combinatoric background simulation for the SpinQuest/E1039 Drell&ndash;Yan experiment at Fermilab. The agent explores the hyperparameter space, identifies the optimal tuning strategy, and produces a reweighted MC sample that closely matches experimental data &mdash; achieving a Kolmogorov&ndash;Smirnov statistic of <strong>KS&thinsp;=&thinsp;0.043</strong> on 17.5 million MC events.
+										An agentic AI system that uses a local LLM (Ollama/llama3) in a <strong>ReAct (Reason&thinsp;+&thinsp;Act) loop</strong> to autonomously tune Monte Carlo combinatoric background simulation for the SpinQuest/E1039 experiment at Fermilab. The goal is to construct tuned combinatoric distributions &mdash; reweighting the MC momentum and mass shapes to match classified experimental background data. The agent explores the hyperparameter space, identifies the optimal tuning strategy, and achieves a Kolmogorov&ndash;Smirnov statistic of <strong>KS&thinsp;=&thinsp;0.043</strong> on 17.5 million MC events.
 									</p>
 
 									<ul class="actions">
@@ -47,27 +47,6 @@
 									</ul>
 
 									<hr class="major" />
-
-									<!-- Results -->
-									<h2>Results</h2>
-									<div class="table-wrapper">
-										<table>
-											<thead>
-												<tr>
-													<th>Metric</th>
-													<th>Value</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr><td>KS statistic &mdash; full mass range [1.5&ndash;6.0 GeV/c&sup2;]</td><td><strong>0.043</strong></td></tr>
-												<tr><td>KS statistic &mdash; low-mass region [1.5&ndash;2.5 GeV/c&sup2;]</td><td><strong>0.044</strong></td></tr>
-												<tr><td>MC events processed</td><td>17.5 million</td></tr>
-												<tr><td>Accepted events after reweighting</td><td>804,708 &nbsp;(4.6%)</td></tr>
-												<tr><td>Phase&thinsp;1 runtime (NF rejection sampling, one-time)</td><td>~32 min</td></tr>
-												<tr><td>Phase&thinsp;2 runtime (BDT mass reweighting pass over 2.3M cached events)</td><td>~2 min</td></tr>
-											</tbody>
-										</table>
-									</div>
 
 									<p>
 										The overlay below shows excellent agreement between the tuned MC (red) and classified experimental background (blue, with Poissonian errors) across dimuon invariant mass, dimuon p<sub>T</sub>, and muon opening angle &mdash; a significant improvement over the untuned simulation (orange).
@@ -127,17 +106,6 @@
 											<li>Bisect M<sub>BDT</sub> to minimise KS(EXP mass, accepted mass)</li>
 										</ul>
 									</div>
-
-									<hr class="major" />
-
-									<!-- Physics Context -->
-									<h2>Physics Context</h2>
-									<p>
-										The <a href="https://spinquest.fnal.gov/" target="_blank" rel="noopener noreferrer">SpinQuest (E1039)</a> experiment at Fermilab measures the Drell&ndash;Yan process with a 120 GeV polarized proton beam to extract the Sivers function of sea quarks in the nucleon. A key analysis challenge is the <strong>combinatoric background</strong>: random muon track combinations that mimic the dimuon signal. The MC simulation of this background must be precisely reweighted to match the experimental momentum and mass distributions before it can be used in background subtraction.
-									</p>
-									<p>
-										This tuner corrects the 6D muon momentum shape (via normalizing flows) and the 1D invariant mass shape (via gradient-boosted reweighting), with particular focus on the <strong>low-mass region below the J/&psi; peak</strong> (1.5&ndash;2.5 GeV/c&sup2;) where combinatoric background dominates the signal region.
-									</p>
 
 									<hr class="major" />
 
