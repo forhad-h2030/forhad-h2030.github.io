@@ -1,0 +1,229 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>SpinQuest Agentic MC Tuner &mdash; Md Forhad Hossain</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo">Personal Portfolio</a>
+									<ul class="icons">
+										<li><a href="https://github.com/forhad-h2030" class="icon brands fa-github" target="_blank" rel="noopener noreferrer"><span class="label">Github</span></a></li>
+										<li><a href="https://www.linkedin.com/in/forhad-hn/" class="icon brands fa-linkedin-in" target="_blank" rel="noopener noreferrer"><span class="label">LinkedIn</span></a></li>
+										<li><a href="https://scholar.google.com/citations?user=KOygUhMAAAAJ&hl=en" class="icon solid fa-graduation-cap" target="_blank" rel="noopener noreferrer"><span class="label">Google Scholar</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>SpinQuest Agentic MC Tuner</h1>
+									</header>
+
+									<!-- Intro -->
+									<p>
+										An agentic AI system that uses a local LLM (Ollama/llama3) in a <strong>ReAct (Reason&thinsp;+&thinsp;Act) loop</strong> to autonomously tune Monte Carlo combinatoric background simulation for the SpinQuest/E1039 Drell&ndash;Yan experiment at Fermilab. The agent explores the hyperparameter space, identifies the optimal tuning strategy, and produces a reweighted MC sample that closely matches experimental data &mdash; achieving a Kolmogorov&ndash;Smirnov statistic of <strong>KS&thinsp;=&thinsp;0.043</strong> on 17.5 million MC events.
+									</p>
+
+									<ul class="actions">
+										<li><a href="https://github.com/forhad-h2030/spinquest-agentic-mc-tuner" class="button primary icon brands fa-github" target="_blank" rel="noopener noreferrer">&nbsp;View on GitHub</a></li>
+										<li><a href="index.html" class="button icon solid fa-arrow-left">&nbsp;Back to Portfolio</a></li>
+									</ul>
+
+									<hr class="major" />
+
+									<!-- Results -->
+									<h2>Results</h2>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Metric</th>
+													<th>Value</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr><td>KS statistic &mdash; full mass range [1.5&ndash;6.0 GeV/c&sup2;]</td><td><strong>0.043</strong></td></tr>
+												<tr><td>KS statistic &mdash; low-mass region [1.5&ndash;2.5 GeV/c&sup2;]</td><td><strong>0.044</strong></td></tr>
+												<tr><td>MC events processed</td><td>17.5 million</td></tr>
+												<tr><td>Accepted events after reweighting</td><td>804,708 &nbsp;(4.6%)</td></tr>
+												<tr><td>Phase&thinsp;1 runtime (NF rejection sampling, one-time)</td><td>~32 min</td></tr>
+												<tr><td>Phase&thinsp;2 runtime (BDT bisection, per iteration)</td><td>~2 min</td></tr>
+											</tbody>
+										</table>
+									</div>
+
+									<p>
+										The overlay below shows excellent agreement between the tuned MC (red) and experimental data (blue) across dimuon invariant mass, rapidity, and individual muon momenta &mdash; a significant improvement over the untuned simulation (orange).
+									</p>
+
+									<span class="image fit"><img src="images/spinquest_agentic_overlay.png" alt="Overlay: tuned MC vs experimental data across dimuon mass, rapidity, and muon momenta" /></span>
+									<p style="text-align:center;color:#7f888f;font-size:0.9em;margin-top:-1em;">
+										Tuned MC (red dashed) vs. experimental data (blue) vs. untuned MC (orange) &mdash; dimuon mass, rapidity, azimuthal angle, and individual muon p<sub>x</sub>, p<sub>y</sub>, p<sub>z</sub>.
+									</p>
+
+									<hr class="major" />
+
+									<!-- What the Agent Did -->
+									<h2>What the Agentic AI Did</h2>
+
+									<h3>ReAct Loop &mdash; Autonomous Parameter Exploration</h3>
+									<p>
+										The Ollama llama3 agent runs a <strong>ReAct (Reason&thinsp;+&thinsp;Act) loop</strong>: at each step the LLM reads the tool result, reasons about the current KS statistic, and decides which action to take next. Because llama3 does not support native function-calling APIs, a lightweight JSON-parsing ReAct loop was implemented &mdash; the LLM outputs a structured <code>{"tool": "...", "args": {...}}</code> block which the agent dispatches.
+									</p>
+
+									<span class="image fit"><img src="images/spinquest_agent_loop.png" alt="ReAct agent loop: LLM calls tools and discovers two-phase tuning strategy" /></span>
+
+									<p>
+										The agent explored <code>NF_RATIO_CLIP</code>, <code>BDT_N_ESTIMATORS</code>, <code>BDT_LEARNING_RATE</code>, <code>EPOCHS</code>, and ML selection cuts across multiple runs. Through this iterative process it identified the non-obvious design choices that made the final tuner work: separating NF and BDT passes, asymmetric BDT training, and midpoint bisection initialisation.
+									</p>
+
+									<h3>KS Improvement Across Agent Runs</h3>
+									<p>
+										Each bar below shows the best KS achieved in one agent-driven run. Red bars are configurations that performed worse; green bars are improvements. The right panel shows the bisection trajectory within the best run: the agent found <strong>bdt_clip&thinsp;=&thinsp;2.75</strong> at iteration&thinsp;1 and correctly identified that higher clips were worse.
+									</p>
+
+									<span class="image fit"><img src="images/spinquest_agentic_exploration.png" alt="Agent exploration: KS per run (left) and bisection convergence (right)" /></span>
+
+									<hr class="major" />
+
+									<!-- How It Works -->
+									<h2>How It Works</h2>
+
+									<h3>Two-Phase Tuner &mdash; discovered through agent exploration</h3>
+									<p>
+										Through iterative agent runs, the optimal strategy separates momentum and mass corrections into two phases, drastically reducing runtime on the 17.5M-event dataset:
+									</p>
+
+									<div class="box">
+										<p><strong>Phase&thinsp;1 &mdash; Normalizing Flow Rejection Sampling</strong> &nbsp;(runs once, ~32 min)</p>
+										<ul>
+											<li>Train two 6-layer affine coupling normalizing flows on 6D muon momenta (p<sub>x</sub>, p<sub>y</sub>, p<sub>z</sub> for &mu;<sup>+</sup> and &mu;<sup>&minus;</sup>)</li>
+											<li>Compute density ratio r&thinsp;=&thinsp;p<sub>EXP</sub>(x)&thinsp;/&thinsp;p<sub>SIM</sub>(x) for each MC event</li>
+											<li>Accept event with probability p&thinsp;=&thinsp;clip(r&thinsp;/&thinsp;M<sub>NF</sub>,&thinsp;0,&thinsp;1), M<sub>NF</sub>&thinsp;=&thinsp;4.5</li>
+											<li>Save ~2.3M NF-accepted events to disk &mdash; <em>reused by all Phase&thinsp;2 iterations</em></li>
+										</ul>
+										<p><strong>Phase&thinsp;2 &mdash; BDT Mass Reweighting</strong> &nbsp;(~2 min per iteration)</p>
+										<ul>
+											<li>Train a GBReweighter (hep_ml) on 100k MC mass samples vs. all ~950 EXP events</li>
+											<li>Stream only the 2.3M NF-accepted events &mdash; not the full 17.5M</li>
+											<li>Accept event with probability p&thinsp;=&thinsp;clip(w<sub>mass</sub>&thinsp;/&thinsp;M<sub>BDT</sub>,&thinsp;0,&thinsp;1)</li>
+											<li>Bisect M<sub>BDT</sub> to minimise KS(EXP mass, accepted mass)</li>
+										</ul>
+									</div>
+
+									<h3>Key Technical Insights</h3>
+									<ul>
+										<li><strong>Asymmetric BDT training:</strong> use all ~950 EXP events vs. 100k MC events. Forcing equal sample sizes (950&thinsp;vs.&thinsp;950) collapsed BDT performance when EXP statistics are limited.</li>
+										<li><strong>Midpoint bisection:</strong> the M<sub>BDT</sub> search initialises at the midpoint of [0.5, 5.0] = 2.75. Starting at the boundary caused the optimiser to explore only upward and miss the global minimum.</li>
+										<li><strong>Full mass range for NF training:</strong> narrowing the training window to [1.5, 2.5] GeV left too few EXP events, degrading normalizing flow quality. The full [1.5, 6.0] GeV range is essential.</li>
+										<li><strong>Phase&thinsp;1 caching:</strong> NF-accepted events are saved to disk and reused across all Phase&thinsp;2 iterations, reducing each tuning cycle from ~32 min to ~2 min.</li>
+									</ul>
+
+									<hr class="major" />
+
+									<!-- Physics Context -->
+									<h2>Physics Context</h2>
+									<p>
+										The <a href="https://spinquest.fnal.gov/" target="_blank" rel="noopener noreferrer">SpinQuest (E1039)</a> experiment at Fermilab measures the Drell&ndash;Yan process with a 120 GeV polarized proton beam to extract the Sivers function of sea quarks in the nucleon. A key analysis challenge is the <strong>combinatoric background</strong>: random muon track combinations that mimic the dimuon signal. The MC simulation of this background must be precisely reweighted to match the experimental momentum and mass distributions before it can be used in background subtraction.
+									</p>
+									<p>
+										This tuner corrects the 6D muon momentum shape (via normalizing flows) and the 1D invariant mass shape (via gradient-boosted reweighting), with particular focus on the <strong>low-mass region below the J/&psi; peak</strong> (1.5&ndash;2.5 GeV/c&sup2;) where combinatoric background dominates the signal region.
+									</p>
+
+									<hr class="major" />
+
+									<!-- Stack -->
+									<h2>Technology Stack</h2>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr><th>Tool / Library</th><th>Role</th></tr>
+											</thead>
+											<tbody>
+												<tr><td><strong>Ollama / llama3</strong></td><td>Local LLM powering the ReAct agent loop</td></tr>
+												<tr><td><strong>PyTorch</strong></td><td>Normalizing flow model training</td></tr>
+												<tr><td><strong>hep_ml GBReweighter</strong></td><td>Gradient-boosted BDT mass reweighting</td></tr>
+												<tr><td><strong>uproot</strong></td><td>Python I/O for ROOT files</td></tr>
+												<tr><td><strong>PyROOT</strong></td><td>Streaming 17.5M-event ROOT trees for rejection sampling</td></tr>
+												<tr><td><strong>scipy.stats.ks_2samp</strong></td><td>KS statistic evaluation</td></tr>
+												<tr><td><strong>scikit-learn</strong></td><td>StandardScaler for feature normalisation</td></tr>
+												<tr><td><strong>Python 3 / conda</strong></td><td>Environment management (root_env)</td></tr>
+											</tbody>
+										</table>
+									</div>
+
+									<hr class="major" />
+
+									<!-- Project structure -->
+									<h2>Project Structure</h2>
+									<pre><code>spinquest-agentic-mc-tuner/
+├── agent.py          # LLM ReAct agent (Ollama/llama3)
+├── tools.py          # Agent tools: get_params, set_param, run_tuning, compute_ks, overlay
+├── run_agent.sh      # Launch script
+└── tuning/
+    ├── rej_fast.py   # Two-phase tuner: NF RS → BDT mass RS  ← best result
+    ├── rej.py        # Combined NF+BDT adaptive tuner (reference)
+    └── overlay.py    # Overlay plot generator (EXP vs tuned MC)</code></pre>
+
+									<ul class="actions">
+										<li><a href="https://github.com/forhad-h2030/spinquest-agentic-mc-tuner" class="button primary icon brands fa-github" target="_blank" rel="noopener noreferrer">&nbsp;View on GitHub</a></li>
+										<li><a href="index.html" class="button icon solid fa-arrow-left">&nbsp;Back to Portfolio</a></li>
+									</ul>
+
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Contact -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><span id="em-sidebar"></span></li>
+										<script>(function(){var u='dgy5cd',d='virginia'+'.'+'edu';document.getElementById('em-sidebar').innerHTML='<a href="mai'+'lto:'+u+'@'+d+'">'+ u +' [at] virginia [dot] edu</a>';})();</script>
+										<li class="icon solid fa-home">Department of Physics<br />University of Virginia<br />Charlottesville, VA</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; Md Forhad Hossain. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
