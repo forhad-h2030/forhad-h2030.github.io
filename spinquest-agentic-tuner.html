@@ -128,14 +128,6 @@
 										</ul>
 									</div>
 
-									<h3>Key Technical Insights</h3>
-									<ul>
-										<li><strong>Asymmetric BDT training:</strong> use all ~950 EXP events vs. 100k MC events. Forcing equal sample sizes (950&thinsp;vs.&thinsp;950) collapsed BDT performance when EXP statistics are limited.</li>
-										<li><strong>Midpoint bisection:</strong> the M<sub>BDT</sub> search initialises at the midpoint of [0.5, 5.0] = 2.75. Starting at the boundary caused the optimiser to explore only upward and miss the global minimum.</li>
-										<li><strong>Full mass range for NF training:</strong> narrowing the training window to [1.5, 2.5] GeV left too few EXP events, degrading normalizing flow quality. The full [1.5, 6.0] GeV range is essential.</li>
-										<li><strong>Phase&thinsp;1 caching:</strong> NF-accepted events are saved to disk and reused across all Phase&thinsp;2 iterations, reducing each tuning cycle from ~32 min to ~2 min.</li>
-									</ul>
-
 									<hr class="major" />
 
 									<!-- Physics Context -->
