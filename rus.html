@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>RUS Fun4All I/O Interface &mdash; Md Forhad Hossain</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo">Personal Portfolio</a>
+									<ul class="icons">
+										<li><a href="https://github.com/forhad-h2030" class="icon brands fa-github" target="_blank" rel="noopener noreferrer"><span class="label">Github</span></a></li>
+										<li><a href="https://www.linkedin.com/in/forhad-hn/" class="icon brands fa-linkedin-in" target="_blank" rel="noopener noreferrer"><span class="label">LinkedIn</span></a></li>
+										<li><a href="https://scholar.google.com/citations?user=KOygUhMAAAAJ&hl=en" class="icon solid fa-graduation-cap" target="_blank" rel="noopener noreferrer"><span class="label">Google Scholar</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>RUS &mdash; Fun4All I/O Interface for E1039</h1>
+									</header>
+
+									<!-- Intro -->
+									<p>
+										A C++ package that integrates a dependency-free ROOT-based I/O format (RUS) into the Fun4All framework used by the SpinQuest (E1039) experiment at Fermilab. The interface allows users to register RUS files directly in Fun4All macros &mdash; with no dynamic library dependencies &mdash; to drive reconstruction, simulation, or event extraction pipelines. The output files produced by this interface are consumed by downstream analysis tools, including the <a href="https://github.com/uva-spin/Qtracker_basic" target="_blank" rel="noopener noreferrer">QTracker</a> ML-based muon track reconstruction pipeline.
+									</p>
+
+									<ul class="actions">
+										<li><a href="https://github.com/E1039-Collaboration/e1039-core/tree/master/packages/RUS" class="button primary icon brands fa-github" target="_blank" rel="noopener noreferrer">&nbsp;View on GitHub</a></li>
+										<li><a href="index.html" class="button icon solid fa-arrow-left">&nbsp;Back to Portfolio</a></li>
+									</ul>
+
+									<hr class="major" />
+
+									<!-- How it works -->
+									<h2>How It Works</h2>
+
+									<h3>Input Manager &mdash; <code>Fun4AllRUSInputManager</code></h3>
+									<p>
+										Reads RUS-format ROOT files and converts the stored data into E1039 data structures within the Fun4All event loop. Handles run metadata, spill information, FPGA and NIM trigger data, detector hits, and optional MC truth tracks. Multi-file synchronization is managed via Fun4All's <code>GetSyncObject</code>/<code>SyncIt</code> interface, ensuring consistent event ordering across input files.
+									</p>
+
+									<h3>Output Manager &mdash; <code>Fun4AllRUSOutputManager</code></h3>
+									<p>
+										Writes Fun4All event data to RUS-format ROOT files with tuned I/O parameters: compression level&nbsp;5, 64&thinsp;kB basket size, and auto-flush every 2,500 entries for efficient sequential read performance. Automatically detects whether MC truth track nodes are present at runtime and enables the corresponding output branches &mdash; no recompilation required to switch between data and simulation modes.
+									</p>
+
+									<h3>Usage in a Fun4All Macro</h3>
+									<pre><code>// Register output
+Fun4AllRUSOutputManager* tree = new Fun4AllRUSOutputManager();
+tree->SetTreeName("tree");
+tree->SetFileName("RUS_out.root");
+se->registerOutputManager(tree);
+
+// Register input
+Fun4AllRUSInputManager* in = new Fun4AllRUSInputManager("RUS");
+in->fileopen("RUS_input.root");
+se->registerInputManager(in);</code></pre>
+
+									<hr class="major" />
+
+									<!-- Downstream use -->
+									<h2>Downstream Use &mdash; QTracker</h2>
+									<p>
+										The RUS output files are the primary data source for <a href="https://github.com/uva-spin/Qtracker_basic" target="_blank" rel="noopener noreferrer">QTracker</a>, a deep learning pipeline for muon track reconstruction in SpinQuest. QTracker reads the detector hit arrays from RUS ROOT files, runs a TrackFinder neural network to predict muon hit patterns, refines hits against real detector geometry, and predicts muon momenta &mdash; writing reconstructed results back to ROOT files for physics analysis.
+									</p>
+
+									<hr class="major" />
+
+									<!-- Technical highlights -->
+									<h2>Technical Highlights</h2>
+									<div class="box">
+										<ul>
+											<li><strong>No dynamic dependencies</strong> &mdash; self-contained ROOT TTree format is portable across HPC environments (Rivanna, FermiGrid) without shared library requirements</li>
+											<li><strong>Tuned I/O performance</strong> &mdash; compression level&nbsp;5, configurable basket size and auto-flush for optimized throughput on large datasets</li>
+											<li><strong>Explicit buffer management</strong> &mdash; vector branch containers are reset between events to prevent memory accumulation in long runs</li>
+											<li><strong>Runtime MC/data switching</strong> &mdash; output manager detects truth track nodes automatically; no recompilation needed between data and simulation workflows</li>
+											<li><strong>Fun4All synchronization</strong> &mdash; implements <code>GetSyncObject</code>/<code>SyncIt</code> for correct event ordering when chaining multiple input files</li>
+										</ul>
+									</div>
+
+									<hr class="major" />
+
+									<!-- Stack -->
+									<h2>Technology Stack</h2>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr><th>Tool / Library</th><th>Role</th></tr>
+											</thead>
+											<tbody>
+												<tr><td><strong>C++</strong></td><td>Core implementation of input/output managers</td></tr>
+												<tr><td><strong>Fun4All (PHOOL)</strong></td><td>Event processing framework; manager registration and synchronization</td></tr>
+												<tr><td><strong>ROOT TTree</strong></td><td>On-disk format for detector hits, triggers, and MC truth tracks</td></tr>
+												<tr><td><strong>CMake</strong></td><td>Build system integration with e1039-core</td></tr>
+											</tbody>
+										</table>
+									</div>
+
+									<ul class="actions">
+										<li><a href="https://github.com/E1039-Collaboration/e1039-core/tree/master/packages/RUS" class="button primary icon brands fa-github" target="_blank" rel="noopener noreferrer">&nbsp;View on GitHub</a></li>
+										<li><a href="index.html" class="button icon solid fa-arrow-left">&nbsp;Back to Portfolio</a></li>
+									</ul>
+
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Contact -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><span id="em-sidebar"></span></li>
+										<script>(function(){var u='dgy5cd',d='virginia'+'.'+'edu';document.getElementById('em-sidebar').innerHTML='<a href="mai'+'lto:'+u+'@'+d+'">'+ u +' [at] virginia [dot] edu</a>';})();</script>
+										<li class="icon solid fa-home">Department of Physics<br />University of Virginia<br />Charlottesville, VA</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; Md Forhad Hossain. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
