@@ -1845,6 +1845,9 @@ button,
           margin-bottom: 0; }
           .posts article:last-child:after {
             display: none; } }
+  @media screen and (max-width: 736px) {
+    .posts article ul.actions li:nth-child(n+3) {
+      display: none; } }
 
 /* Wrapper */
 #wrapper {
