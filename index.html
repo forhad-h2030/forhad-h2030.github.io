@@ -124,6 +124,16 @@
 											</ul>
 										</article>
 										<article>
+											<a href="transformer-dimuon.html" class="image"><img src="images/transformer_attention_annotated.png" alt="Transformer self-attention weight map for dimuon classification" /></a>
+											<h3><a href="transformer-dimuon.html">Transformer Dimuon Event Classifier</a></h3>
+											<p>A feature-tokenization Transformer classifying SpinQuest dimuon events (J/&psi;, &psi;&prime;, Drell&ndash;Yan, combinatoric) from 18 kinematic features. Self-attention maps expose physically interpretable feature correlations &mdash; invariant mass, opening angle, station tracking &mdash; providing interpretability the DNN baseline lacks.</p>
+											<ul class="actions">
+												<li><a class="button">pytorch</a></li>
+												<li><a class="button">Transformer</a></li>
+												<li><a class="button">attention maps</a></li>
+											</ul>
+										</article>
+										<article>
 											<a href="spinquest_bkg.html" class="image"><img src="images/spinquest_bkg.jpg" alt="SpinQuest Signal and Background Classifier" /></a>
 											<h3><a href="spinquest_bkg.html">SpinQuest Signal and Background Classifier</a></h3>
 											<p>An iterative multi-model DNN pipeline for SpinQuest dimuon classification. Binary DNNs sequentially classify J/&psi;, &psi;&prime;, Drell&ndash;Yan, and combinatoric background events; MC simulation is tuned to experimental data (see <a href="spinquest-agentic-tuner.html">Agentic MC Tuner</a>); a final 4-class softmax DNN performs simultaneous multiclass classification.</p>
