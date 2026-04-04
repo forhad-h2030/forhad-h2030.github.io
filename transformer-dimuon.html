@@ -298,44 +298,6 @@
 
 						<hr class="major" />
 
-						<!-- ── 6. Comparison with DNN ── -->
-						<h2>6 &mdash; Comparison with the DNN Baseline</h2>
-						<div class="table-wrapper">
-							<table>
-								<thead>
-									<tr>
-										<th>Model</th>
-										<th>Params</th>
-										<th>Accuracy</th>
-										<th>AUC (J/&psi; / &psi;&prime; / DY / Comb)</th>
-										<th>J/&psi; AUC</th>
-										<th>J/&psi; purity @ 90% eff.</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><strong>DNN baseline</strong> (512→256→128→64, BN)</td>
-										<td>&sim;400K</td>
-										<td>&sim;90%</td><td>&mdash;</td><td>&mdash;</td>
-										<td>&sim;90%</td>
-									</tr>
-									<tr>
-										<td><strong>Transformer</strong> (d=64, H=4, L=4)</td>
-										<td>&sim;50K</td>
-										<td>80%</td>
-										<td>0.986 / 0.992 / 0.900 / 0.923</td>
-										<td>0.986</td>
-										<td>84.8%</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<p style="font-size:0.88em;color:#666">
-							<em>Numbers to be filled after full 200-epoch runs. The Transformer uses 8&times; fewer parameters.</em>
-						</p>
-
-						<hr class="major" />
-
 						<!-- ── Stack ── -->
 						<h2>Technology Stack</h2>
 						<div class="table-wrapper">
