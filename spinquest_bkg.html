@@ -1,169 +1,381 @@
-<!DOCTYPE HTML>
-<!--
-	Editorial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>SpinQuest Signal and Background Classifier &mdash; Md Forhad Hossain</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>SpinQuest Signal and Background Classifier | Md Forhad Hossain</title>
+	<meta name="description" content="A multi-stage deep-learning pipeline for signal and background classification in the SpinQuest E1039 experiment." />
+	<meta name="theme-color" content="#ffffff" />
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Roboto:wght@400;500;700&amp;display=swap" />
+	<script>
+		(function () {
+			try {
+				var savedTheme = localStorage.getItem('portfolio-theme');
+				if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+					document.documentElement.setAttribute('data-theme', 'dark');
+				}
+			} catch (error) {}
+		})();
+	</script>
+	<style>
+		:root {
+			--accent: #1565c0;
+			--accent-strong: #0d47a1;
+			--accent-soft: #eaf3ff;
+			--text: #26292b;
+			--text-soft: #4b5563;
+			--muted: #6b7280;
+			--border: #e6e9ec;
+			--bg: #ffffff;
+			--surface: #ffffff;
+			--surface-alt: #f7f9fc;
+			--nav-bg: rgba(255, 255, 255, 0.96);
+			--code-bg: #111c27;
+			--code-text: #d7e4ef;
+			--shadow: 0 12px 32px rgba(20, 30, 40, 0.09);
+			--shadow-small: 0 2px 5px rgba(20, 30, 40, 0.1);
+			--button-text: #ffffff;
+			color-scheme: light;
+		}
+		html[data-theme="dark"] {
+			--accent: #7db7ff;
+			--accent-strong: #acd1ff;
+			--accent-soft: #132b48;
+			--text: #edf3fb;
+			--text-soft: #c3cedb;
+			--muted: #9eabb9;
+			--border: #2b3745;
+			--bg: #0c1219;
+			--surface: #121b25;
+			--surface-alt: #17222e;
+			--nav-bg: rgba(12, 18, 25, 0.94);
+			--code-bg: #08111a;
+			--code-text: #dce9f4;
+			--shadow: 0 12px 34px rgba(0, 0, 0, 0.28);
+			--shadow-small: 0 2px 7px rgba(0, 0, 0, 0.26);
+			--button-text: #07111c;
+			color-scheme: dark;
+		}
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body {
+			margin: 0;
+			font-family: 'Roboto', Helvetica, Arial, sans-serif;
+			font-size: 16px;
+			line-height: 1.7;
+			color: var(--text);
+			background: var(--bg);
+		}
+		h1, h2, h3, .brand { font-family: 'Montserrat', Helvetica, Arial, sans-serif; }
+		a { color: var(--accent); text-decoration: none; }
+		a:hover { text-decoration: underline; }
+		.container { width: min(1290px, calc(100% - 3em)); margin: 0 auto; }
+		#navbar {
+			position: sticky;
+			top: 0;
+			z-index: 20;
+			border-bottom: 1px solid var(--border);
+			background: var(--nav-bg);
+			backdrop-filter: blur(8px);
+		}
+		#navbar .container {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1em;
+			min-height: 66px;
+		}
+		.brand { color: var(--text); font-weight: 700; }
+		.brand:hover { color: var(--accent); text-decoration: none; }
+		.nav-actions { display: flex; align-items: center; gap: 0.75em; }
+		.back-link { font-size: 0.85em; font-weight: 600; color: var(--muted); }
+		.back-link:hover { color: var(--accent); text-decoration: none; }
+		.theme-toggle {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 38px;
+			height: 38px;
+			padding: 0;
+			border: 1px solid var(--border);
+			border-radius: 50%;
+			color: var(--text);
+			background: var(--surface);
+			cursor: pointer;
+		}
+		.theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+		.hero { padding: 5em 0 3.8em; border-bottom: 1px solid var(--border); }
+		.hero-grid {
+			display: grid;
+			grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+			gap: 3em;
+			align-items: center;
+		}
+		.eyebrow {
+			margin: 0 0 0.8em;
+			color: var(--accent);
+			font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+			font-size: 0.75em;
+			font-weight: 700;
+			letter-spacing: 0.09em;
+			text-transform: uppercase;
+		}
+		h1 { max-width: 760px; margin: 0; font-size: clamp(2.15em, 5vw, 3.45em); line-height: 1.12; }
+		.lede { max-width: 720px; margin: 1.2em 0 0; color: var(--text-soft); font-size: 1.08em; }
+		.tags { display: flex; flex-wrap: wrap; gap: 0.45em; margin: 1.3em 0 0; }
+		.tag {
+			padding: 0.22em 0.7em;
+			border: 1px solid var(--border);
+			border-radius: 999px;
+			color: var(--muted);
+			background: var(--surface-alt);
+			font-size: 0.78em;
+			font-weight: 600;
+		}
+		.actions { display: flex; flex-wrap: wrap; gap: 0.7em; margin: 1.7em 0 0; }
+		.button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.55em;
+			min-height: 42px;
+			padding: 0.55em 1em;
+			border: 1px solid var(--accent);
+			border-radius: 7px;
+			color: var(--button-text);
+			background: var(--accent);
+			font: inherit;
+			font-size: 0.9em;
+			font-weight: 600;
+			cursor: pointer;
+			transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+		}
+		.button:hover { transform: translateY(-1px); box-shadow: var(--shadow-small); text-decoration: none; }
+		.button.secondary { color: var(--text); border-color: var(--border); background: transparent; }
+		.button.secondary:hover { color: var(--accent); border-color: var(--accent); }
+		.project-visual {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 310px;
+			padding: 1.15em;
+			border-radius: 16px;
+			background: #f5f8fb;
+			box-shadow: var(--shadow);
+			overflow: hidden;
+		}
+		.project-visual img { display: block; width: 100%; height: auto; border-radius: 10px; }
+		main { padding: 3.8em 0 5em; }
+		.content-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(260px, 0.65fr); gap: 1.5em; align-items: start; }
+		.stack { display: grid; gap: 1.5em; }
+		.panel {
+			padding: 1.5em;
+			border: 1px solid var(--border);
+			border-radius: 12px;
+			background: var(--surface);
+			box-shadow: var(--shadow-small);
+		}
+		.panel h2 { margin: 0 0 0.9em; font-size: 1.3em; }
+		.panel h3 { margin: 0; font-size: 1em; }
+		.panel p:last-child, .panel ul:last-child { margin-bottom: 0; }
+		.manager-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+		.manager-card { padding: 1.2em; border: 1px solid var(--border); border-radius: 9px; background: var(--surface-alt); }
+		.manager-card code { display: block; margin-bottom: 0.65em; color: var(--accent-strong); font-weight: 700; overflow-wrap: anywhere; }
+		.manager-card p { margin: 0; color: var(--text-soft); font-size: 0.92em; }
+		.pipeline-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; margin-top: 1.1em; }
+		.pipeline-card { position: relative; padding: 1.2em; border: 1px solid var(--border); border-radius: 9px; background: var(--surface-alt); }
+		.pipeline-card::after { content: '\2192'; position: absolute; top: 50%; right: -0.82em; z-index: 2; width: 1.6em; color: var(--accent); background: var(--surface); text-align: center; transform: translateY(-50%); }
+		.pipeline-card:last-child::after { display: none; }
+		.pipeline-number { display: inline-flex; align-items: center; justify-content: center; width: 2em; height: 2em; margin-bottom: 0.7em; border-radius: 50%; color: var(--button-text); background: var(--accent); font-weight: 700; }
+		.pipeline-card h3 { margin-bottom: 0.55em; }
+		.pipeline-card p { margin: 0; color: var(--text-soft); font-size: 0.9em; }
+		.class-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65em; margin-top: 1em; }
+		.class-chip { padding: 0.75em 0.9em; border-left: 3px solid var(--accent); border-radius: 5px; color: var(--text-soft); background: var(--surface-alt); }
+		.code-block {
+			margin: 1.2em 0 0;
+			padding: 1.35em;
+			overflow-x: auto;
+			border-radius: 10px;
+			color: var(--code-text);
+			background: var(--code-bg);
+			font: 0.86em/1.75 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+		}
+		.code-comment { color: #8fb3cc; }
+		.code-type { color: #81c7ff; }
+		.code-string { color: #f4c979; }
+		.highlight-list { list-style: none; margin: 0; padding: 0; }
+		.highlight-list li { display: grid; grid-template-columns: 1.4em 1fr; gap: 0.7em; margin-bottom: 0.85em; }
+		.highlight-list i { color: var(--accent); margin-top: 0.35em; }
+		.quick-facts { position: sticky; top: 90px; }
+		.fact { padding: 0.85em 0; border-top: 1px solid var(--border); }
+		.fact:first-of-type { padding-top: 0; border-top: 0; }
+		.fact-label { display: block; color: var(--muted); font-size: 0.75em; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+		.fact-value { display: block; margin-top: 0.2em; color: var(--text-soft); }
+		.table-wrap { overflow-x: auto; }
+		table { width: 100%; border-collapse: collapse; }
+		th, td { padding: 0.8em; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+		th { color: var(--muted); font-size: 0.78em; letter-spacing: 0.05em; text-transform: uppercase; }
+		.closing { margin-top: 1.5em; text-align: center; }
+		.closing p { max-width: 680px; margin: 0 auto 1em; color: var(--text-soft); }
+		footer { padding: 2.2em 0; border-top: 1px solid var(--border); color: var(--muted); text-align: center; font-size: 0.88em; }
+		footer p { margin: 0; }
+		@media (max-width: 820px) {
+			.hero { padding-top: 3.2em; }
+			.hero-grid, .content-grid { grid-template-columns: 1fr; }
+			.project-visual { min-height: 240px; }
+			.quick-facts { position: static; }
+			.pipeline-grid { grid-template-columns: 1fr; }
+			.pipeline-card::after { content: '\2193'; top: auto; right: 50%; bottom: -1.05em; transform: translateX(50%); }
+		}
+		@media (max-width: 580px) {
+			.container { width: min(100% - 2em, 1290px); }
+			#navbar .container { min-height: 60px; }
+			.brand { font-size: 0.92em; }
+			.back-link span { display: none; }
+			.manager-grid { grid-template-columns: 1fr; }
+			.class-list { grid-template-columns: 1fr; }
+			.panel { padding: 1.2em; }
+		}
+		@media (prefers-reduced-motion: reduce) {
+			html { scroll-behavior: auto; }
+			* { transition-duration: 0.01ms !important; }
+		}
+	</style>
+</head>
+<body>
+	<nav id="navbar">
+		<div class="container">
+			<a class="brand" href="index.html#about">Md Forhad Hossain</a>
+			<div class="nav-actions">
+				<a class="back-link" href="index.html#featured-research"><i class="fas fa-arrow-left" aria-hidden="true"></i> <span>Back to portfolio</span></a>
+				<button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false"><i class="fas fa-moon" aria-hidden="true"></i></button>
+			</div>
+		</div>
+	</nav>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+	<header class="hero">
+		<div class="container hero-grid">
+			<div>
+				<p class="eyebrow">Deep learning &middot; SpinQuest E1039</p>
+				<h1>SpinQuest Signal and Background Classifier</h1>
+				<p class="lede">A multi-stage deep-learning pipeline that separates J/&psi;, &psi;&prime;, Drell&ndash;Yan, and combinatoric events to create clean signal samples for transverse single-spin asymmetry analysis.</p>
+				<div class="tags" aria-label="Technologies"><span class="tag">PyTorch</span><span class="tag">DNNs</span><span class="tag">ROOT</span><span class="tag">SpinQuest</span></div>
+				<div class="actions">
+					<a class="button" href="https://github.com/forhad-h2030/spinquest-combinatoric-bkg" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub</a>
+					<a class="button secondary" href="index.html#featured-research"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to portfolio</a>
+				</div>
+			</div>
+			<div class="project-visual">
+				<img src="images/spinquest_bkg.jpg" alt="SpinQuest signal and background classification pipeline" />
+			</div>
+		</div>
+	</header>
 
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
+	<main>
+		<div class="container content-grid">
+			<div class="stack">
+				<section class="panel" id="pipeline">
+					<p class="eyebrow">Architecture</p>
+					<h2>Three-stage classification pipeline</h2>
+					<p>The workflow combines specialized binary classifiers, Real NVP&ndash;style normalizing-flow tuning of the simulated events, and a final four-fold multiclass network so each event receives physics-ready class probabilities.</p>
+					<div class="pipeline-grid">
+						<article class="pipeline-card"><span class="pipeline-number">1</span><h3>Binary DNNs</h3><p>Sequential models isolate J/&psi;, &psi;&prime;, and Drell&ndash;Yan signals from the remaining background.</p></article>
+						<article class="pipeline-card"><span class="pipeline-number">2</span><h3>Flow tuning</h3><p>A Real NVP&ndash;style normalizing flow tunes simulated combinatoric-background events to match the classifier-tagged experimental data.</p></article>
+						<article class="pipeline-card"><span class="pipeline-number">3</span><h3>Multiclass DNN</h3><p>A four-fold softmax model produces simultaneous per-event probabilities for TSSA extraction.</p></article>
+					</div>
+				</section>
 
-							<!-- Header -->
-								<header id="header">
-									<a href="index.html" class="logo">Personal Portfolio</a>
-									<ul class="icons">
-										<li><a href="https://github.com/forhad-h2030" class="icon brands fa-github" target="_blank" rel="noopener noreferrer"><span class="label">Github</span></a></li>
-										<li><a href="https://www.linkedin.com/in/forhad-hn/" class="icon brands fa-linkedin-in" target="_blank" rel="noopener noreferrer"><span class="label">LinkedIn</span></a></li>
-										<li><a href="https://scholar.google.com/citations?user=KOygUhMAAAAJ&hl=en" class="icon solid fa-graduation-cap" target="_blank" rel="noopener noreferrer"><span class="label">Google Scholar</span></a></li>
-									</ul>
-								</header>
+				<section class="panel" id="binary-classifiers">
+					<p class="eyebrow">Stage 1</p>
+					<h2>Specialized binary classifiers</h2>
+					<p>Three binary DNNs are trained sequentially, each targeting one signal class against all other events. Their tagged probability scores are written back into experimental ROOT files with <code>tag_exp_root_with_ml.py</code> and are used to tune the simulated combinatoric-background events to match the classifier-tagged experimental data through a Real NVP&ndash;style normalizing flow.</p>
+					<div class="class-list">
+						<div class="class-chip"><strong>J/&psi;</strong><br />Signal versus non-J/&psi; background</div>
+						<div class="class-chip"><strong>&psi;&prime; / &psi;(2S)</strong><br />Signal versus remaining background</div>
+						<div class="class-chip"><strong>Drell&ndash;Yan</strong><br />Signal versus combinatoric background</div>
+						<div class="class-chip"><strong>Per-event scores</strong><br />Drive the normalizing-flow tuning and multiclass inference</div>
+					</div>
+				</section>
 
-							<!-- Content -->
-								<section>
-									<header class="main">
-										<h1>SpinQuest Signal and Background Classifier</h1>
-									</header>
+				<section class="panel" id="multiclass">
+					<p class="eyebrow">Stage 2</p>
+					<h2>Four-fold multiclass classifier</h2>
+					<p>The four-class softmax network takes the flow-tuned simulated events and works as a four-fold classifier, returning simultaneous per-event probabilities for J/&psi;, &psi;&prime;, Drell&ndash;Yan, and combinatoric background, the classification used for transverse single-spin asymmetry (TSSA) extraction.</p>
+				</section>
 
-									<!-- Intro -->
-									<p>
-										A multi-stage deep learning pipeline for dimuon event classification in the SpinQuest (E1039) experiment at Fermilab. The goal is to separate four event categories &mdash; J/&psi;, &psi;&prime;, Drell&ndash;Yan, and combinatoric background &mdash; from raw experimental data, providing clean signal samples for transverse single-spin asymmetry (TSSA) extraction. The pipeline combines iterative binary classifiers with MC simulation tuning and a final multiclass softmax DNN.
-									</p>
-
-									<ul class="actions">
-										<li><a href="https://github.com/forhad-h2030/spinquest-combinatoric-bkg" class="button primary icon brands fa-github" target="_blank" rel="noopener noreferrer">&nbsp;View on GitHub</a></li>
-										<li><a href="index.html" class="button icon solid fa-arrow-left">&nbsp;Back to Portfolio</a></li>
-									</ul>
-
-									<hr class="major" />
-
-									<!-- Pipeline -->
-									<h2>Pipeline Overview</h2>
-
-									<h3>Stage 1 &mdash; Binary DNN Classifiers</h3>
-									<p>
-										Three binary deep neural networks are trained sequentially, each targeting one signal class against all others:
-									</p>
-									<div class="box">
-										<ul>
-											<li><strong>J/&psi; classifier</strong> &mdash; separates J/&psi; events from non-J/&psi; background</li>
-											<li><strong>&psi;&prime; classifier</strong> &mdash; separates &psi;(2S) events from remaining background</li>
-											<li><strong>Drell&ndash;Yan classifier</strong> &mdash; separates Drell&ndash;Yan events from combinatoric background</li>
-										</ul>
-										<p>
-											Each classifier outputs a per-event probability score. These scores are written back into the experimental ROOT files via <code>tag_exp_root_with_ml.py</code>, making them available as features for downstream stages.
-										</p>
-									</div>
-
-									<h3>Stage 2 &mdash; MC Simulation Tuning</h3>
-									<p>
-										The combinatoric background MC must be tuned to match the distributions of the classifier input features &mdash; including kinematic and momentum variables &mdash; of classified experimental background before it can be used for training (see the <a href="https://github.com/forhad-h2030/spinquest-combinatoric-bkg/tree/main/data" target="_blank" rel="noopener noreferrer"><code>data/</code> directory</a> in the repository for the full feature set). This tuning is handled by the
-										<a href="spinquest-agentic-tuner.html">SpinQuest Agentic MC Tuner</a> &mdash; an LLM-driven pipeline using normalizing flow rejection sampling and BDT mass reweighting to bring the MC into agreement with data.
-									</p>
-
-									<h3>Stage 3 &mdash; Multiclass Softmax DNN</h3>
-									<p>
-										A final 4-class softmax DNN performs simultaneous classification across all event types (J/&psi;, &psi;&prime;, Drell&ndash;Yan, combinatoric background), using the binary classifier scores and kinematic features as input. This provides per-event class probabilities used directly in the TSSA analysis.
-									</p>
-
-									<hr class="major" />
-
-									<!-- Data & Preprocessing -->
-									<h2>Data &amp; Preprocessing</h2>
-									<p>
-										Raw data is stored in ROOT format. The preprocessing pipeline (<code>preprocess/</code>) extracts dimuon kinematic features &mdash; invariant mass, transverse momentum, rapidity, and individual muon momenta &mdash; into NumPy arrays for training. Event selection applies vertex position cuts and ML score thresholds from earlier classifier stages.
-									</p>
-
-									<hr class="major" />
-
-									<!-- Stack -->
-									<h2>Technology Stack</h2>
-									<div class="table-wrapper">
-										<table>
-											<thead>
-												<tr><th>Tool / Library</th><th>Role</th></tr>
-											</thead>
-											<tbody>
-												<tr><td><strong>PyTorch</strong></td><td>Binary and multiclass DNN training</td></tr>
-												<tr><td><strong>ROOT / uproot</strong></td><td>Reading and writing experimental ROOT files</td></tr>
-												<tr><td><strong>NumPy / SciPy</strong></td><td>Feature extraction and statistical evaluation</td></tr>
-												<tr><td><strong>Scikit-learn</strong></td><td>Preprocessing and evaluation metrics</td></tr>
-												<tr><td><strong>Rivanna HPC / FermiGrid</strong></td><td>GPU-accelerated training via Slurm</td></tr>
-											</tbody>
-										</table>
-									</div>
-
-									<hr class="major" />
-
-									<!-- Project structure -->
-									<h2>Project Structure</h2>
-									<pre><code>spinquest-combinatoric-bkg/
-├── preprocess/              # ROOT → NumPy feature extraction
-│   ├── run_extract.py
-│   └── run_extract_all.py
-├── scripts/                 # Training &amp; inference
+				<section class="panel" id="preprocessing">
+					<p class="eyebrow">Data workflow</p>
+					<h2>ROOT preprocessing and training</h2>
+					<p>Raw ROOT data is transformed into NumPy training arrays containing invariant mass, transverse momentum, rapidity, and individual-muon momentum features. Event selection applies vertex-position cuts and score thresholds from earlier stages.</p>
+					<pre class="code-block"><code>spinquest-combinatoric-bkg/
+├── preprocess/              <span class="code-comment"># ROOT → NumPy extraction</span>
+├── scripts/                 <span class="code-comment"># Training and inference</span>
 │   ├── train_jpsi_vs_nonjpsi.py
 │   ├── train_psip_vs_nonpsip.py
 │   ├── train_dy_vs_comb.py
 │   └── tag_exp_root_with_ml.py
-└── utils/                   # Core ML + plotting utilities
-    ├── core_train_binary.py
-    ├── extract_dimu_features.py
-    └── plots_binary.py</code></pre>
+└── utils/                   <span class="code-comment"># Core ML and evaluation</span></code></pre>
+				</section>
 
-									<ul class="actions">
-										<li><a href="https://github.com/forhad-h2030/spinquest-combinatoric-bkg" class="button primary icon brands fa-github" target="_blank" rel="noopener noreferrer">&nbsp;View on GitHub</a></li>
-										<li><a href="index.html" class="button icon solid fa-arrow-left">&nbsp;Back to Portfolio</a></li>
-									</ul>
-
-								</section>
-
-						</div>
-					</div>
-
-				<!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
-
-							<!-- Contact -->
-								<section>
-									<header class="major">
-										<h2>Get in touch</h2>
-									</header>
-									<ul class="contact">
-										<li class="icon solid fa-envelope"><span id="em-sidebar"></span></li>
-										<script>(function(){var u='dgy5cd',d='virginia'+'.'+'edu';document.getElementById('em-sidebar').innerHTML='<a href="mai'+'lto:'+u+'@'+d+'">'+ u +' [at] virginia [dot] edu</a>';})();</script>
-										<li class="icon solid fa-home">Department of Physics<br />University of Virginia<br />Charlottesville, VA</li>
-									</ul>
-								</section>
-
-							<!-- Footer -->
-								<footer id="footer">
-									<p class="copyright">&copy; Md Forhad Hossain. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-								</footer>
-
-						</div>
-					</div>
-
+				<section class="panel" id="technology">
+					<p class="eyebrow">Tooling</p>
+					<h2>Technology stack</h2>
+					<div class="table-wrap"><table><thead><tr><th>Tool / library</th><th>Role</th></tr></thead><tbody>
+						<tr><td><strong>PyTorch</strong></td><td>Binary and multiclass DNN training</td></tr>
+						<tr><td><strong>ROOT / uproot</strong></td><td>Reading, tagging, and writing experimental files</td></tr>
+						<tr><td><strong>NumPy / SciPy</strong></td><td>Feature extraction and statistical evaluation</td></tr>
+						<tr><td><strong>Scikit-learn</strong></td><td>Preprocessing and evaluation metrics</td></tr>
+						<tr><td><strong>Rivanna HPC / FermiGrid</strong></td><td>GPU-accelerated training and batch processing</td></tr>
+					</tbody></table></div>
+				</section>
 			</div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<aside class="panel quick-facts" aria-label="Project facts">
+				<p class="eyebrow">At a glance</p>
+				<h2>Project facts</h2>
+				<div class="fact"><span class="fact-label">Experiment</span><span class="fact-value">SpinQuest (E1039), Fermilab</span></div>
+				<div class="fact"><span class="fact-label">Task</span><span class="fact-value">Four-class dimuon event classification</span></div>
+				<div class="fact"><span class="fact-label">Signal classes</span><span class="fact-value">J/&psi;, &psi;&prime;, and Drell&ndash;Yan</span></div>
+				<div class="fact"><span class="fact-label">Background</span><span class="fact-value">Combinatoric dimuon events</span></div>
+				<div class="fact"><span class="fact-label">Analysis goal</span><span class="fact-value">TSSA signal extraction</span></div>
+				<div class="fact"><span class="fact-label">Repository</span><span class="fact-value"><a href="https://github.com/forhad-h2030/spinquest-combinatoric-bkg" target="_blank" rel="noopener noreferrer">spinquest-combinatoric-bkg</a></span></div>
+			</aside>
+		</div>
 
-	</body>
+		<div class="container panel closing">
+			<p>Explore the training and inference pipeline on GitHub or return to the featured research portfolio.</p>
+			<div class="actions" style="justify-content:center;margin-top:0;">
+				<a class="button" href="https://github.com/forhad-h2030/spinquest-combinatoric-bkg" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> View source</a>
+				<a class="button secondary" href="index.html#featured-research">Back to portfolio</a>
+			</div>
+		</div>
+	</main>
+
+	<footer><div class="container"><p>&copy; Md Forhad Hossain &middot; University of Virginia</p></div></footer>
+
+	<script>
+		(function () {
+			var root = document.documentElement;
+			var button = document.getElementById('theme-toggle');
+			var meta = document.querySelector('meta[name="theme-color"]');
+			function syncTheme() {
+				var dark = root.getAttribute('data-theme') === 'dark';
+				button.setAttribute('aria-pressed', String(dark));
+				button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+				button.innerHTML = '<i class="fas ' + (dark ? 'fa-sun' : 'fa-moon') + '" aria-hidden="true"></i>';
+				if (meta) meta.setAttribute('content', dark ? '#0c1219' : '#ffffff');
+			}
+			syncTheme();
+			button.addEventListener('click', function () {
+				var dark = root.getAttribute('data-theme') !== 'dark';
+				if (dark) root.setAttribute('data-theme', 'dark');
+				else root.removeAttribute('data-theme');
+				try { localStorage.setItem('portfolio-theme', dark ? 'dark' : 'light'); } catch (error) {}
+				syncTheme();
+			});
+		})();
+	</script>
+</body>
 </html>

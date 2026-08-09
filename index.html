@@ -1,378 +1,1265 @@
-<!DOCTYPE HTML>
-<!--
-	Editorial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Md Forhad Hossain</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Md Forhad Hossain</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="Md Forhad Hossain, Postdoctoral Researcher, University of Virginia" />
+	<meta name="theme-color" content="#ffffff" />
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Roboto:wght@400;500;700&amp;display=swap" />
+	<script>
+		(function () {
+			try {
+				var savedTheme = localStorage.getItem('portfolio-theme');
+				if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+					document.documentElement.setAttribute('data-theme', 'dark');
+				}
+			} catch (error) {}
+		})();
+	</script>
+	<style>
+		:root {
+			--accent: #1565c0;
+			--accent-strong: #0d47a1;
+			--accent-soft: #eaf3ff;
+			--text: #26292b;
+			--text-soft: #4b5563;
+			--muted: #6b7280;
+			--border: #e6e9ec;
+			--bg: #ffffff;
+			--surface: #ffffff;
+			--surface-alt: #f7f9fc;
+			--nav-bg: rgba(255, 255, 255, 0.96);
+			--shadow: 0 12px 32px rgba(20, 30, 40, 0.09);
+			--shadow-small: 0 2px 5px rgba(20, 30, 40, 0.1);
+			--button-text: #ffffff;
+			color-scheme: light;
+		}
+		html[data-theme="dark"] {
+			--accent: #7db7ff;
+			--accent-strong: #acd1ff;
+			--accent-soft: #132b48;
+			--text: #edf3fb;
+			--text-soft: #c3cedb;
+			--muted: #9eabb9;
+			--border: #2b3745;
+			--bg: #0c1219;
+			--surface: #121b25;
+			--surface-alt: #17222e;
+			--nav-bg: rgba(12, 18, 25, 0.94);
+			--shadow: 0 12px 34px rgba(0, 0, 0, 0.28);
+			--shadow-small: 0 2px 7px rgba(0, 0, 0, 0.26);
+			--button-text: #07111c;
+			color-scheme: dark;
+		}
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body {
+			margin: 0;
+			font-family: 'Roboto', Helvetica, Arial, sans-serif;
+			color: var(--text);
+			background: var(--bg);
+			line-height: 1.7;
+			font-size: 16px;
+		}
+		h1, h2, h3, .brand {
+			font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+		}
+		a { color: var(--accent); text-decoration: none; }
+		a:hover { text-decoration: underline; }
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 0 2em;
+		}
 
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
+		/* Sticky top nav */
+		#navbar {
+			position: sticky;
+			top: 0;
+			z-index: 1000;
+			background: var(--nav-bg);
+			backdrop-filter: blur(6px);
+			border-bottom: 1px solid var(--border);
+		}
+		#navbar .container {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding-top: 0.9em;
+			padding-bottom: 0.9em;
+			flex-wrap: wrap;
+			gap: 0.5em 1.5em;
+		}
+		#navbar .brand {
+			font-weight: 700;
+			font-size: 1.05em;
+			color: var(--text);
+		}
+		#navbar .brand:hover { text-decoration: none; color: var(--accent); }
+		#navbar ul {
+			list-style: none;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.3em 1.6em;
+			margin: 0;
+			padding: 0;
+		}
+		#navbar a.nav-link {
+			color: var(--muted);
+			font-size: 0.82em;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+		#navbar a.nav-link:hover { color: var(--accent); text-decoration: none; }
+		.nav-actions {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			flex: 1 1 720px;
+			min-width: 0;
+			gap: 0.55em;
+		}
+		@media (max-width: 1040px) {
+			.nav-actions { flex-basis: 100%; justify-content: space-between; align-items: center; flex-wrap: nowrap; }
+			#navbar ul {
+				flex-wrap: nowrap;
+				overflow-x: auto;
+				-webkit-overflow-scrolling: touch;
+				scrollbar-width: none;
+				gap: 0.25em 1.15em;
+				padding-bottom: 2px;
+				mask-image: linear-gradient(to right, transparent, #000 12px, #000 calc(100% - 24px), transparent);
+			}
+			#navbar ul::-webkit-scrollbar { display: none; }
+			#navbar a.nav-link { white-space: nowrap; }
+			.theme-toggle { flex-shrink: 0; }
+		}
 
-							<!-- Header -->
-								<header id="header">
-									<a href="index.html" class="logo">Personal Portfolio</a>
-									<ul class="icons">
-										<li><a href="https://github.com/forhad-h2030" class="icon brands fa-github" target="_blank" rel="noopener noreferrer"><span class="label">Github</span></a></li>
-										<li><a href="https://www.linkedin.com/in/forhad-hn/" class="icon brands fa-linkedin-in" target="_blank" rel="noopener noreferrer"><span class="label">LinkedIn</span></a></li>
-										<li><a href="https://scholar.google.com/citations?user=KOygUhMAAAAJ&hl=en" class="icon solid fa-graduation-cap" target="_blank" rel="noopener noreferrer"><span class="label">Google Scholar</span></a></li>
-									</ul>
-								</header>
+		.theme-toggle {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 36px;
+			height: 36px;
+			padding: 0;
+			border: 1px solid var(--border);
+			border-radius: 50%;
+			color: var(--text);
+			background: var(--surface);
+			cursor: pointer;
+			transition: color 160ms ease, border-color 160ms ease, transform 160ms ease;
+		}
+		.theme-toggle:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
+		.theme-toggle:focus-visible,
+		.button:focus-visible,
+		.filter-button:focus-visible {
+			outline: 3px solid color-mix(in srgb, var(--accent) 35%, transparent);
+			outline-offset: 2px;
+		}
 
-							<!-- Banner -->
-								<section id="banner">
-									<div class="content">
-										<header>
-											<h1>Md Forhad Hossain</h1>
-											<p>Experimental Physicist specializing in machine learning, data analysis, and detector systems for large-scale nuclear physics experiments</p>
-										</header>
-										<p>
-											I'm Forhad, a postdoctoral researcher at the University of Virginia working on the <a href="https://spinquest.fnal.gov/" target="_blank" rel="noopener noreferrer">SpinQuest (E1039)</a> and <a href="https://www.phy.anl.gov/mep/drell-yan/" target="_blank" rel="noopener noreferrer">SeaQuest (E906)</a> experiments at Fermilab. My research targets the transverse single-spin asymmetry in Drell&ndash;Yan and J/&psi; production to probe the spin structure of the nucleon.
-										</p>
-									</div>
-									<span class="image object">
-										<img src="images/your_photo.jpg" alt="Md Forhad Hossain" />
-									</span>
-								</section>
+		/* Section rhythm */
+		section {
+			padding: 6em 0 4em 0;
+			border-top: 1px solid var(--border);
+			scroll-margin-top: 72px;
+		}
+		section:first-of-type { border-top: 0; }
+		@media screen and (max-width: 1680px) {
+			section { padding: 5em 0 3em 0; }
+		}
+		@media screen and (max-width: 1280px) {
+			section { padding: 4em 0 2em 0; }
+		}
+		@media screen and (max-width: 900px) {
+			section { padding: 3em 0 1.5em 0; }
+		}
+		@media (max-width: 1040px) {
+			section { scroll-margin-top: 108px; }
+		}
+		.section-grid {
+			display: grid;
+			grid-template-columns: 220px 1fr;
+			gap: 2.5em;
+		}
+		.section-grid h2.heading {
+			font-size: 1.5em;
+			margin: 0;
+			color: var(--text);
+		}
+		@media (max-width: 720px) {
+			.section-grid { grid-template-columns: 1fr; gap: 0.8em; }
+		}
 
-							<!-- Skills -->
-								<section>
-									<header class="major">
-										<h2>Skills</h2>
-									</header>
-									<div class="features">
-										<article>
-											<span class="icon solid fa-robot"></span>
-											<div class="content">
-												<h3>Machine Learning &amp; AI</h3>
-												<ul>
-													<li>Agentic AI</li>
-													<li>Normalizing flows &amp; generative models</li>
-													<li>Deep neural networks (DNNs)</li>
-													<li>Bayesian unfolding</li>
-												</ul>
-											</div>
-										</article>
-										<article>
-											<span class="icon solid fa-code"></span>
-											<div class="content">
-												<h3>Programming Languages</h3>
-												<ul>
-													<li>C / C++</li>
-													<li>Python (NumPy, Pandas, SciPy, Scikit-learn, PyTorch)</li>
-													<li>Bash scripting</li>
-													<li>LabVIEW, LaTeX</li>
-												</ul>
-											</div>
-										</article>
-										<article>
-											<span class="icon solid fa-atom"></span>
-											<div class="content">
-												<h3>HEP &amp; Scientific Tools</h3>
-												<ul>
-													<li>ROOT, GEANT4</li>
-													<li>Fun4All, RooUnfold</li>
-													<li>Scikit-HEP</li>
-													<li>HPC: Rivanna &amp; FermiGrid</li>
-												</ul>
-											</div>
-										</article>
-										<article>
-											<span class="icon solid fa-microchip"></span>
-											<div class="content">
-												<h3>Hardware &amp; Instrumentation</h3>
-												<ul>
-													<li>NIM, CAMAC, VME electronics</li>
-													<li>PMT optimization</li>
-													<li>Polarized cryogenic targets</li>
-													<li>NMR polarimetry &amp; AFP spin-reversal</li>
-												</ul>
-											</div>
-										</article>
-									</div>
-								</section>
+		/* Profile card: now lives in the About section, next to the intro text */
+		.about-layout {
+			display: grid;
+			grid-template-columns: 260px minmax(0, 1fr);
+			gap: 3em;
+			align-items: start;
+		}
+		.about-layout .profile-panel { min-width: 0; }
+		.about-layout img.avatar {
+			width: 100%;
+			max-width: 260px;
+			height: 260px;
+			border-radius: 50%;
+			border: 3px solid #d8dde3;
+			object-fit: cover;
+			display: block;
+			box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+		}
+		.about-layout .profile-heading {
+			margin-top: 1.1em;
+		}
+		.about-layout h1.name {
+			font-size: 1.5em;
+			line-height: 1.2;
+			margin: 0;
+		}
+		.about-layout .profile-role {
+			margin: 1em 0 0;
+			font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+			font-size: 0.95em;
+			font-weight: 400;
+			line-height: 1.55;
+		}
+		.about-layout .profile-details {
+			list-style: none;
+			margin: 1.2em 0 0;
+			padding: 1.1em 0 0;
+			border-top: 1px solid var(--border);
+		}
+		.about-layout .profile-details li {
+			display: grid;
+			grid-template-columns: 1.4em minmax(0, 1fr);
+			gap: 0.6em;
+			align-items: start;
+			margin-bottom: 0.6em;
+			line-height: 1.4;
+			font-size: 0.88em;
+		}
+		.about-layout .profile-details i,
+		.about-layout .profile-x-mark {
+			color: var(--muted);
+			font-size: 1em;
+			line-height: 1.4;
+			text-align: center;
+		}
+		.about-layout .profile-details a { color: var(--text); }
+		.about-layout .profile-details a:hover { color: var(--accent); }
+		.about-layout .profile-x-mark {
+			font-family: Arial, sans-serif;
+			font-weight: 600;
+		}
+		.about-layout .icons {
+			display: flex;
+			gap: 1.1em;
+			margin: 1.2em 0 0;
+		}
+		.about-layout .icons a { color: var(--muted); font-size: 1.2em; }
+		.about-layout .icons a:hover { color: var(--accent); }
+		@media (max-width: 800px) {
+			.about-layout { grid-template-columns: 1fr; gap: 2em; }
+			.about-layout .profile-panel { width: 100%; max-width: 400px; margin: 0 auto; text-align: center; }
+			.about-layout img.avatar { margin: 0 auto; }
+			.about-layout .profile-details { text-align: left; }
+		}
+		.hero-kicker {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.45em;
+			margin: 0 0 0.9em;
+			padding: 0.25em 0.75em;
+			border: 1px solid var(--border);
+			border-radius: 999px;
+			color: var(--accent-strong);
+			background: var(--accent-soft);
+			font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+			font-size: 0.74em;
+			font-weight: 700;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+		.hero-actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.7em;
+			margin: 1.5em 0 0;
+		}
+		.button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.55em;
+			min-height: 42px;
+			padding: 0.55em 1em;
+			border: 1px solid var(--accent);
+			border-radius: 7px;
+			font: inherit;
+			font-size: 0.9em;
+			font-weight: 600;
+			color: var(--button-text);
+			background: var(--accent);
+			cursor: pointer;
+			transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+		}
+		.button:hover { text-decoration: none; transform: translateY(-1px); box-shadow: var(--shadow-small); }
+		.button.secondary { color: var(--text); background: transparent; border-color: var(--border); }
+		.button.secondary:hover { color: var(--accent); border-color: var(--accent); }
+		.edu-mini {
+			list-style: none;
+			margin: 1.5em 0 0 0;
+			padding: 0;
+		}
+		.edu-mini li {
+			display: flex;
+			gap: 0.7em;
+			margin-bottom: 0.8em;
+			font-size: 0.92em;
+		}
+		.edu-mini i { color: var(--accent); margin-top: 0.25em; }
+		.edu-mini .course { font-weight: 600; margin: 0; }
+		.edu-mini .inst { color: var(--muted); margin: 0; }
 
-							<!-- Projects -->
-								<section>
-									<header class="major">
-										<h2>Selected Projects</h2>
-									</header>
-									<div class="posts">
-										<article>
-											<a href="transformer-dimuon.html" class="image"><img src="images/transformer_attention_annotated.png" alt="Transformer self-attention weight map for dimuon classification" style="width:100%;height:175px;object-fit:cover;object-position:top;" /></a>
-											<h3><a href="transformer-dimuon.html">Transformer Dimuon Event Classifier</a></h3>
-											<p>A feature-tokenization Transformer classifying SpinQuest dimuon events (J/&psi;, &psi;&prime;, Drell&ndash;Yan, combinatoric) from 18 kinematic features. Self-attention maps expose physically interpretable feature correlations &mdash; invariant mass, opening angle, station tracking &mdash; providing interpretability the DNN baseline lacks.</p>
-											<ul class="actions" style="flex-wrap:wrap;gap:0.3em;">
-												<li><a href="https://github.com/forhad-h2030/feature-tokenization-transformer" class="button small icon brands fa-github" target="_blank" rel="noopener noreferrer">&nbsp;Code</a></li>
-												<li><a class="button small">PyTorch</a></li>
-												<li><a class="button small">Transformer</a></li>
-												<li><a class="button small">attention maps</a></li>
-											</ul>
-										</article>
-										<article>
-											<a href="spinquest_bkg.html" class="image"><img src="images/spinquest_bkg.jpg" alt="SpinQuest Signal and Background Classifier" /></a>
-											<h3><a href="spinquest_bkg.html">SpinQuest Signal and Background Classifier</a></h3>
-											<p>An iterative multi-model DNN pipeline for SpinQuest dimuon classification. Binary DNNs sequentially classify J/&psi;, &psi;&prime;, Drell&ndash;Yan, and combinatoric background events; MC simulation is tuned to experimental data; a final 4-class softmax DNN performs simultaneous multiclass classification.</p>
-											<ul class="actions" style="flex-wrap:wrap;gap:0.3em;">
-												<li><a class="button small">pytorch</a></li>
-												<li><a class="button small">DNNs</a></li>
-												<li><a class="button small">multiclass classification</a></li>
-											</ul>
-										</article>
-										<article>
-											<a href="rus.html" class="image">
-												<div style="width:100%;height:175px;background:#1a2a3a;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
-													<span style="font-size:38px;line-height:1;color:#7ab3d4;">&#60;&#47;&#62;</span>
-													<span style="font-size:12px;color:#7ab3d4;font-family:monospace;letter-spacing:1px;">Fun4AllRUSInputManager</span>
-													<span style="font-size:12px;color:#7ab3d4;font-family:monospace;letter-spacing:1px;">Fun4AllRUSOutputManager</span>
-												</div>
-											</a>
-											<h3><a href="rus.html">RUS &mdash; Fun4All I/O Interface for E1039</a></h3>
-											<p>A C++ interface integrating a dependency-free ROOT-based I/O format (RUS) into the Fun4All framework. Implements input and output managers so users can register RUS files directly in Fun4All macros to run reconstruction or extract events. Used by <a href="https://github.com/uva-spin/Qtracker_basic" target="_blank" rel="noopener noreferrer">QTracker</a>, an ML-based muon track reconstruction pipeline for SpinQuest.</p>
-											<ul class="actions">
-												<li><a class="button">C++</a></li>
-												<li><a class="button">Fun4All</a></li>
-												<li><a class="button">ROOT</a></li>
-											</ul>
-										</article>
-									</div>
-								</section>
+		/* Experience: compact academic timeline inspired by ffathena.github.io */
+		#experience {
+			padding: 30px 0;
+			scroll-margin-top: 70px;
+		}
+		#experience .section-grid {
+			grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+			gap: 0;
+			align-items: start;
+		}
+		#experience .heading {
+			font-size: 27px;
+			font-weight: 400;
+			line-height: 1.25;
+			color: var(--text);
+		}
+		.experience-item {
+			display: grid;
+			grid-template-columns: 70px minmax(0, 1fr);
+			position: relative;
+		}
+		.experience-rail {
+			position: relative;
+			min-height: 100%;
+		}
+		.experience-rail::before,
+		.experience-rail::after {
+			content: "";
+			position: absolute;
+			left: 50%;
+			width: 1px;
+			height: 50%;
+			background: var(--accent);
+			transform: translateX(-50%);
+		}
+		.experience-rail::before { top: 0; }
+		.experience-rail::after { top: 50%; }
+		.experience-item:first-child .experience-rail::before,
+		.experience-item:last-child .experience-rail::after {
+			display: none;
+		}
+		.experience-dot {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			z-index: 1;
+			width: 22px;
+			height: 22px;
+			border: 1px solid #d9dee3;
+			border-radius: 50%;
+			background: var(--surface);
+			transform: translate(-50%, -50%);
+		}
+		.experience-dot.filled {
+			border-color: var(--accent);
+			background: var(--accent);
+		}
+		.experience-card {
+			min-width: 0;
+			margin: 9px 15px 27px;
+			padding: 22.5px;
+			border: 1px solid var(--border);
+			border-radius: 4px;
+			background: var(--surface);
+			box-shadow: var(--shadow-small);
+		}
+		.experience-item:last-child .experience-card {
+			margin-bottom: 0;
+		}
+		.experience-card-head {
+			display: flex;
+			align-items: flex-start;
+		}
+		.experience-card-head.center-logo {
+			align-items: center;
+		}
+		.experience-logo-link {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 72px;
+			height: 72px;
+			min-height: 72px;
+			margin: 0 14px 9px 0;
+			flex: 0 0 72px;
+		}
+		.experience-logo {
+			display: block;
+			width: auto;
+			height: auto;
+			max-width: 72px;
+			max-height: 72px;
+			object-fit: contain;
+		}
+		.experience-logo-link.compact-logo-link {
+			justify-content: flex-start;
+			overflow: hidden;
+		}
+		.experience-logo.compact-logo {
+			width: auto;
+			height: 72px;
+			max-width: none;
+			max-height: none;
+			flex: none;
+		}
+		.experience-logo-link.large-logo-link {
+			width: 144px;
+			height: 144px;
+			min-height: 144px;
+			flex: 0 0 144px;
+		}
+		.experience-logo.large-logo {
+			max-width: 144px;
+			max-height: 144px;
+		}
+		.experience-logo-link.experience-ura-logo-link {
+			width: 120px;
+			flex-basis: 120px;
+			justify-content: flex-start;
+		}
+		.experience-logo.experience-ura-logo {
+			width: 120px;
+			max-width: 120px;
+			max-height: 42px;
+		}
+		.experience-summary { min-width: 0; }
+		.experience-title,
+		.experience-company {
+			margin: 0;
+			font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+			font-size: 18px;
+			line-height: 1.5;
+		}
+		.experience-title {
+			font-weight: 700;
+			color: var(--text-soft);
+		}
+		.experience-company { font-weight: 400; }
+		.experience-company.primary { font-weight: 700; color: var(--text-soft); }
+		.experience-company a { color: var(--text); }
+		.experience-meta {
+			margin: 0;
+			color: var(--muted);
+			font-size: 14.4px;
+			line-height: 1.65;
+		}
+		.middot-divider {
+			padding: 0 0.45em;
+		}
+		.experience-description {
+			margin: 0.8em 0 0.45em;
+			font-size: 0.95em;
+			line-height: 1.65;
+		}
+		.experience-role-list {
+			margin-top: 1.25em;
+			padding-top: 1.25em;
+			border-top: 1px solid var(--border);
+		}
+		.experience-role + .experience-role {
+			margin-top: 1.15em;
+			padding-top: 1.15em;
+			border-top: 1px solid var(--border);
+		}
+		.experience-role-title {
+			margin: 0;
+			font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+			font-size: 17px;
+			font-weight: 700;
+			line-height: 1.5;
+			color: var(--text-soft);
+		}
+		.experience-role .experience-description {
+			margin: 0.55em 0 0;
+		}
+		.experience-card .tag { margin-top: 0.35em; }
+		@media (max-width: 720px) {
+			#experience { scroll-margin-top: 170px; }
+			#experience .section-grid {
+				grid-template-columns: 1fr;
+				gap: 0.8em;
+			}
+			#experience .heading { text-align: center; }
+			.experience-item { grid-template-columns: 1fr; }
+			.experience-rail { display: none; }
+			.experience-card { margin: 8px 0 18px; }
+		}
+		@media (max-width: 480px) {
+			.experience-card { padding: 18px; }
+			.experience-logo-link {
+				width: 60px;
+				height: 60px;
+				min-height: 60px;
+				margin-right: 12px;
+				flex-basis: 60px;
+			}
+			.experience-logo {
+				max-width: 60px;
+				max-height: 60px;
+			}
+			.experience-logo.compact-logo { height: 60px; }
+			.experience-logo-link.large-logo-link {
+				width: 100px;
+				height: 100px;
+				min-height: 100px;
+				flex-basis: 100px;
+			}
+			.experience-logo.large-logo {
+				max-width: 100px;
+				max-height: 100px;
+			}
+			.experience-logo-link.experience-ura-logo-link {
+				width: 110px;
+				flex-basis: 110px;
+			}
+			.experience-logo.experience-ura-logo {
+				width: 110px;
+				max-width: 110px;
+			}
+			.experience-title,
+			.experience-company { font-size: 16px; }
+		}
+		.tag {
+			display: inline-block;
+			font-size: 0.75em;
+			color: var(--muted);
+			border: 1px solid var(--border);
+			border-radius: 999px;
+			padding: 0.15em 0.7em;
+			margin: 0.2em 0.3em 0 0;
+		}
 
-							<!-- Research Experience -->
-								<section>
-									<header class="major">
-										<h2>Research Experience</h2>
-									</header>
+		/* Featured research */
+		#featured-research { background: var(--surface-alt); }
+		.research-intro {
+			max-width: 720px;
+			margin: 0 0 1.35em;
+			color: var(--text-soft);
+		}
+		.research-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.15em;
+		}
+		.research-card {
+			display: flex;
+			min-width: 0;
+			height: 100%;
+			flex-direction: column;
+			overflow: hidden;
+			border: 1px solid var(--border);
+			border-radius: 12px;
+			color: var(--text);
+			background: var(--surface);
+			box-shadow: var(--shadow-small);
+			transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+		}
+		.research-card:hover {
+			transform: translateY(-3px);
+			border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+			box-shadow: var(--shadow);
+			text-decoration: none;
+		}
+		.research-visual {
+			position: relative;
+			height: 175px;
+			overflow: hidden;
+			background: #e9eef5;
+		}
+		.research-visual img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 240ms ease;
+		}
+		.research-card:hover .research-visual img { transform: scale(1.025); }
+		.research-visual.contain img { object-fit: contain; padding: 1.2em; background: #fff; }
+		.research-visual.afp-visual img { object-fit: contain; background: #fff; }
+		.research-visual.rus-visual {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			gap: 8px;
+			padding: 1em;
+			color: #7ab3d4;
+			background: #1a2a3a;
+			text-align: center;
+		}
+		.rus-code-icon {
+			font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+			font-size: 38px;
+			font-weight: 700;
+			line-height: 1;
+		}
+		.rus-manager {
+			font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+			font-size: 12px;
+			letter-spacing: 1px;
+			line-height: 1.4;
+		}
+		.research-content { padding: 1.15em 1.2em 1.25em; }
+		.research-eyebrow {
+			margin: 0 0 0.3em;
+			color: var(--accent);
+			font-size: 0.72em;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+		.research-card h3 { margin: 0; font-size: 1.03em; line-height: 1.45; }
+		.research-card p { margin: 0.55em 0 0; color: var(--text-soft); font-size: 0.9em; line-height: 1.55; }
+		.research-link {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.4em;
+			margin-top: 0.85em;
+			color: var(--accent);
+			font-size: 0.84em;
+			font-weight: 700;
+		}
+		@media (max-width: 900px) {
+			.research-grid { grid-template-columns: 1fr; }
+			.research-card { display: grid; grid-template-columns: minmax(160px, 34%) 1fr; }
+			.research-visual { height: 100%; min-height: 190px; }
+		}
+		@media (max-width: 560px) {
+			.research-card { display: flex; }
+			.research-visual { height: 175px; min-height: 0; }
+		}
 
-									<h3>&thinsp;&hairsp;University of Virginia</h3>
-									<div class="row">
-										<hplain>Postdoctoral Researcher &ensp;<span>&#8226;</span>&ensp;<i>June 2024 &ndash; Present</i>&ensp;<span>&#8226;</span>&ensp; Charlottesville, VA</hplain>
-										<p style="margin-bottom:1em;"></p>
-										<p>
-											Faculty Advisor: Dr. Dustin Keller. Leading polarized target system operations and AFP spin-reversal development for the SpinQuest (E1039) experiment at Fermilab. Developing ML frameworks (normalizing flows, DNNs, agentic AI) for combinatoric background modeling to support transverse single-spin asymmetry (TSSA) extraction from Drell&ndash;Yan and J/&psi; processes. Serving as Run and Analysis Coordinator: overseeing daily operations, data-quality monitoring, and coordination with the Fermilab Accelerator Division.
-											<br /><br />
-											<a class="button small">normalizing flows</a>&ensp;
-											<a class="button small">DNNs</a>&ensp;
-											<a class="button small">polarized targets</a>&ensp;
-											<a class="button small">AFP / NMR</a>
-										</p>
-									</div>
+		/* Skills / collaborations simple columns */
+		.col-list h3.subheading {
+			text-transform: uppercase;
+			font-size: 0.8em;
+			letter-spacing: 0.06em;
+			color: var(--muted);
+			margin: 0 0 0.6em 0;
+		}
+		.two-col {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 2em;
+		}
+		@media (max-width: 720px) {
+			.two-col { grid-template-columns: 1fr; }
+		}
+		.col-list ul { margin: 0; padding-left: 1.2em; }
+		.col-list li { margin-bottom: 0.3em; }
 
-									<h3>&thinsp;&hairsp;New Mexico State University</h3>
-									<div class="row">
-										<hplain>Graduate Research Assistant &ensp;<span>&#8226;</span>&ensp;<i>May 2018 &ndash; May 2024</i>&ensp;<span>&#8226;</span>&ensp; Las Cruces, NM</hplain>
-										<p style="margin-bottom:1em;"></p>
-										<p>
-											Applied Bayesian Iterative Unfolding (RooUnfold) and machine learning to extract angular distributions of Drell&ndash;Yan dimuons in p+Fe interactions at 120 GeV for my PhD thesis. Served as onsite hardware expert for NIM, CAMAC, and VME-based trigger detector installation for the SpinQuest experiment. Developed Python and C++ pipelines for high-voltage PMT optimization and data quality analysis.
-											<br /><br />
-											<a class="button small">ROOT / GEANT4</a>&ensp;
-											<a class="button small">RooUnfold</a>&ensp;
-											<a class="button small">C++ / Python</a>&ensp;
-											<a class="button small">VME / NIM hardware</a>
-										</p>
-									</div>
+		/* Publications / presentations lists */
+		ol.pub-list { padding-left: 1.3em; margin: 0; }
+		ol.pub-list li {
+			margin-bottom: 0.9em;
+			padding: 0.85em 1em 0.9em;
+			border: 1px solid var(--border);
+			border-radius: 8px;
+			line-height: 1.6;
+			background: var(--surface);
+			box-shadow: 0 1px 2px rgba(20, 30, 40, 0.04);
+		}
+		ol.pub-list li::marker { color: var(--muted); font-weight: 600; }
+		ol.pub-list li[hidden] { display: none; }
+		h3.pub-group {
+			font-size: 0.95em;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			color: var(--muted);
+			margin: 1.6em 0 0.8em 0;
+		}
+		h3.pub-group:first-child { margin-top: 0; }
+		.publication-tools {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: space-between;
+			gap: 0.8em;
+			margin: 0 0 1.4em;
+			padding: 0.85em;
+			border: 1px solid var(--border);
+			border-radius: 10px;
+			background: var(--surface-alt);
+		}
+		.filter-group { display: flex; flex-wrap: wrap; gap: 0.45em; }
+		.filter-button {
+			padding: 0.4em 0.75em;
+			border: 1px solid var(--border);
+			border-radius: 999px;
+			color: var(--text-soft);
+			background: var(--surface);
+			font: inherit;
+			font-size: 0.78em;
+			font-weight: 600;
+			cursor: pointer;
+		}
+		.filter-button:hover,
+		.filter-button[aria-pressed="true"] { color: var(--button-text); border-color: var(--accent); background: var(--accent); }
+		.publication-count { color: var(--muted); font-size: 0.82em; white-space: nowrap; }
+		.pub-actions { display: flex; flex-wrap: wrap; gap: 0.45em; margin-top: 0.65em; }
+		.pub-action {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.35em;
+			padding: 0.2em 0.62em;
+			border: 1px solid var(--border);
+			border-radius: 5px;
+			font-size: 0.78em;
+			font-weight: 600;
+			color: var(--accent);
+			background: var(--surface-alt);
+		}
+		.pub-action:hover { border-color: var(--accent); text-decoration: none; }
 
-									<h3>&thinsp;&hairsp;New Mexico State University &mdash; Teaching</h3>
-									<div class="row">
-										<hplain>Graduate Teaching Assistant &ensp;<span>&#8226;</span>&ensp;<i>Aug 2016 &ndash; May 2018</i>&ensp;<span>&#8226;</span>&ensp; Las Cruces, NM</hplain>
-										<p style="margin-bottom:1em;"></p>
-										<p>Instructed introductory physics laboratory courses and provided individual tutoring for undergraduate students.</p>
-									</div>
-								</section>
+		/* Featured presentations */
+		.talk-grid {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 0.9em;
+			margin-bottom: 1.6em;
+		}
+		.talk-card {
+			display: flex;
+			min-width: 0;
+			flex-direction: column;
+			padding: 1em;
+			border: 1px solid var(--border);
+			border-radius: 10px;
+			color: var(--text);
+			background: var(--surface-alt);
+		}
+		.talk-card:hover { border-color: var(--accent); text-decoration: none; }
+		.talk-date { color: var(--accent); font-size: 0.75em; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+		.talk-card h3 { margin: 0.45em 0 0; font-size: 0.92em; line-height: 1.5; }
+		.talk-card p { margin: auto 0 0; padding-top: 0.7em; color: var(--muted); font-size: 0.8em; line-height: 1.45; }
+		.talk-list-heading { margin: 0 0 0.8em; color: var(--muted); font-size: 0.78em; letter-spacing: 0.06em; text-transform: uppercase; }
+		@media (max-width: 850px) { .talk-grid { grid-template-columns: 1fr; } }
 
-							<!-- Education -->
-								<section>
-									<header class="major">
-										<h2>Education</h2>
-									</header>
+		footer {
+			padding: 3em 0;
+			text-align: center;
+			color: var(--muted);
+			font-size: 0.9em;
+		}
+		footer p { margin: 0.25em 0; }
+		.last-updated { font-size: 0.88em; }
 
-									<div style="clear: both">
-										<h3 style="float: left">New Mexico State University</h3>
-										<hplain2>&emsp;<span>&#8226;</span>&emsp;<i>May 2018 &ndash; May 2024</i></hplain2>
-									</div>
-									<br />
-									<p>
-										I completed my Ph.D. in Physics under the supervision of Dr. Stephen Pate, applying Bayesian Iterative Unfolding and machine learning to extract angular distributions of Drell&ndash;Yan dimuons in proton&ndash;iron interactions at 120 GeV. Along the way I served as onsite hardware expert for the SpinQuest experiment trigger system installation, including NIM, CAMAC, and VME electronics, and developed Python and C++ pipelines for PMT optimization and data quality monitoring.
-									</p>
-									<p><i>Ph.D. Thesis: &ldquo;Angular Distribution of Dimuons from Drell&ndash;Yan Production in p+Fe Interactions at 120 GeV Beam Energy&rdquo;</i></p>
-									<p><i>M.S. in Physics &mdash; New Mexico State University, 2018&ndash;2021</i></p>
+		@media (prefers-reduced-motion: reduce) {
+			html { scroll-behavior: auto; }
+			*, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+		}
+		@media print {
+			:root, html[data-theme="dark"] {
+				--text: #111;
+				--text-soft: #333;
+				--muted: #555;
+				--border: #d8d8d8;
+				--bg: #fff;
+				--surface: #fff;
+				--surface-alt: #fff;
+			}
+			#navbar, .hero-actions, .publication-tools { display: none !important; }
+			section { padding: 1.4em 0; break-inside: avoid; }
+			.research-card, .experience-card, ol.pub-list li, .talk-card { box-shadow: none; }
+			a { color: inherit; }
+		}
+	</style>
+</head>
+<body>
 
-									<div style="clear: both">
-										<h3 style="float: left">Jagannath University, Dhaka, Bangladesh</h3>
-										<hplain2>&emsp;<span>&#8226;</span>&emsp;<i>2006 &ndash; 2014</i></hplain2>
-									</div>
-									<br />
-									<p>B.Sc. in Physics (2006&ndash;2012) &nbsp;&bull;&nbsp; M.Sc. in Physics (2012&ndash;2014)</p>
-								</section>
-
-							<!-- Publications -->
-								<section>
-									<header class="major">
-										<h2>Selected Publications</h2>
-									</header>
-
-									<h3>Published</h3>
-									<ol>
-										<li style="margin-bottom:0.8em; line-height:1.6">
-											<b>M. F. Hossain</b> <i>et al.</i> &ldquo;Adiabatic Fast Passage Spin Manipulation Measurements in Solid Polarized Targets.&rdquo; <i>Nuclear Instruments and Methods in Physics Research A</i>, 2026.
-										</li>
-										<li style="margin-bottom:0.8em; line-height:1.6">
-											C. H. Leung <i>et al.</i> (SeaQuest Collaboration). &ldquo;Final SeaQuest Results on the Flavor Asymmetry of the Proton Light-Quark Sea with Proton-Induced Drell&ndash;Yan Process.&rdquo; (2025)
-											&mdash; <a href="https://arxiv.org/abs/2512.17564" target="_blank" rel="noopener noreferrer">arXiv:2512.17564</a>
-										</li>
-										<li style="margin-bottom:0.8em; line-height:1.6">
-											C. H. Leung <i>et al.</i> (SeaQuest Collaboration). &ldquo;Measurement of J/&psi; and &psi;(2S) Production in p+p and p+d Interactions at 120 GeV.&rdquo; (2024)
-											&mdash; <a href="https://arxiv.org/abs/2406.11459" target="_blank" rel="noopener noreferrer">arXiv:2406.11459</a>
-										</li>
-										<li style="margin-bottom:0.8em; line-height:1.6">
-											S. Pate, A. Pun, <b>M. F. Hossain</b> <i>et al.</i> (SeaQuest Collaboration). &ldquo;Estimation of Combinatoric Background in SeaQuest using an Event-Mixing Method.&rdquo; (2023)
-											&mdash; <a href="https://arxiv.org/abs/2302.04152" target="_blank" rel="noopener noreferrer">arXiv:2302.04152</a>
-										</li>
-										<li style="margin-bottom:0.8em; line-height:1.6">
-											A. Chen <i>et al.</i> (SeaQuest Collaboration). &ldquo;Probing Nucleon&rsquo;s Spin Structures with Polarized Drell&ndash;Yan in the Fermilab SpinQuest Experiment.&rdquo; (2019)
-											&mdash; <a href="https://arxiv.org/abs/1901.09994" target="_blank" rel="noopener noreferrer">arXiv:1901.09994</a>
-										</li>
-									</ol>
-									<p><i>Full list of papers: <a href="https://scholar.google.com/citations?user=KOygUhMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar Profile</a></i></p>
-
-									<h3>Submitted Manuscripts</h3>
-									<ol>
-										<li style="margin-bottom:0.8em; line-height:1.6">
-											K. Nagai, <b>M. F. Hossain</b>, A. Pun, K. Nakano, K. Liu, C. A. Aidala <i>et al.</i> (SeaQuest Collaboration). &ldquo;Measurements of Angular Distributions of Drell&ndash;Yan Dimuons in p+p and p+d Interactions at 120 GeV/c.&rdquo; <i>Submitted to Physical Review Letters</i>, 2026.
-											&mdash; <a href="https://arxiv.org/abs/2601.16410" target="_blank" rel="noopener noreferrer">arXiv:2601.16410</a>
-										</li>
-									</ol>
-
-									<h3>In Preparation</h3>
-									<ol>
-										<li style="margin-bottom:0.8em; line-height:1.6">
-											<b>M. F. Hossain</b> <i>et al.</i> (SeaQuest Collaboration). &ldquo;Angular Distribution of Drell&ndash;Yan Muon Pairs Produced in Proton&ndash;Iron Interactions with a 120 GeV Proton Beam at SeaQuest.&rdquo; <i>Intended for Physical Review Letters</i>, 2026.
-										</li>
-									</ol>
-								</section>
-
-							<!-- Collaborations -->
-								<section>
-									<header class="major">
-										<h2>Experimental Collaborations</h2>
-									</header>
-									<div class="features">
-										<article>
-											<span class="icon solid fa-magnet"></span>
-											<div class="content">
-												<h3><a href="https://spinquest.fnal.gov/" target="_blank" rel="noopener noreferrer">SpinQuest (E1039) &mdash; Fermilab</a></h3>
-												<p>Fixed-target Drell&ndash;Yan experiment measuring the transverse single-spin asymmetry (TSSA) to extract the Sivers function of sea quarks, using a 120 GeV polarized proton beam with NH&#8323;/ND&#8323; cryogenic targets at Fermilab.</p>
-											</div>
-										</article>
-										<article>
-											<span class="icon solid fa-circle-nodes"></span>
-											<div class="content">
-												<h3><a href="https://www.phy.anl.gov/mep/drell-yan/" target="_blank" rel="noopener noreferrer">SeaQuest (E906) &mdash; Fermilab</a></h3>
-												<p>Fixed-target Drell&ndash;Yan experiment measuring the cross-section ratio p+d/p+p to determine the antiquark flavor asymmetry d&#773;/&#363; in the proton sea at Fermilab.</p>
-											</div>
-										</article>
-									</div>
-								</section>
-
-							<!-- Presentations -->
-								<section>
-									<header class="major">
-										<h2>Selected Presentations</h2>
-									</header>
-
-									<ol>
-										<li style="margin-bottom:0.8em; line-height:1.6">
-											<b>M. F. Hossain</b>. &ldquo;Machine Learning Approaches for Background Modeling and Dimuon Classification in SpinQuest.&rdquo; <i><a href="https://www.aps.org/events/2025/division-nuclear-physics-2025" target="_blank" rel="noopener noreferrer">APS Division of Nuclear Physics (DNP) Fall Meeting</a></i>, 2025. Contributed Talk.
-										</li>
-										<li style="margin-bottom:0.8em; line-height:1.6">
-											<b>M. F. Hossain</b>. &ldquo;Hardware (AFP, ssRF).&rdquo; <i><a href="https://indico.jlab.org/event/986/" target="_blank" rel="noopener noreferrer">b1/Azz Tensor Collaboration Meeting</a></i>, Jefferson Lab, Oct 2025. Contributed Talk.
-										</li>
-										<li style="margin-bottom:0.8em; line-height:1.6">
-											<b>M. F. Hossain</b>. &ldquo;Classifying Dimuons from Proton&ndash;Proton Scattering Using ML Techniques.&rdquo; <i><a href="https://www.aps.org/events/2025/joint-meeting" target="_blank" rel="noopener noreferrer">APS Global Physics Summit</a></i>, Anaheim, CA, Mar 2025. Contributed Talk.
-										</li>
-										<li style="margin-bottom:0.8em; line-height:1.6">
-											<b>M. F. Hossain</b>. &ldquo;SpinQuest in 10 Minutes.&rdquo; <i><a href="https://indico.fnal.gov/event/64625/contributions/295295/" target="_blank" rel="noopener noreferrer">New Perspectives</a></i>, Fermilab, Jul 2024. Contributed Talk.
-										</li>
-										<li style="margin-bottom:0.8em; line-height:1.6">
-											<b>M. F. Hossain</b>. &ldquo;Angular Distribution of Dimuons from Drell&ndash;Yan Production in p+Fe at 120 GeV.&rdquo; <i><a href="https://indico.frib.msu.edu/event/66/" target="_blank" rel="noopener noreferrer">APS DNP &amp; JPS Fall Meeting</a></i>, 2023. Contributed Talk.
-										</li>
-										<li style="margin-bottom:0.8em; line-height:1.6">
-											<b>M. F. Hossain</b>. &ldquo;Iterative Unfolding of Angular Distribution of Drell&ndash;Yan Production in p+Fe at 120 GeV.&rdquo; <i><a href="https://indico.fnal.gov/event/59506/contributions/269971/" target="_blank" rel="noopener noreferrer">New Perspectives</a></i>, Fermilab, Jun 2023. Contributed Talk.
-										</li>
-										<li style="margin-bottom:0.8em; line-height:1.6">
-											<b>M. F. Hossain</b>. &ldquo;Measurement of the Angular Distribution of Drell&ndash;Yan Production in p+Fe at 120 GeV.&rdquo; <i><a href="https://meetings.aps.org/Meeting/DNP22/Session/LI.2" target="_blank" rel="noopener noreferrer">APS DNP Fall Meeting</a></i>, Oct 2022. Contributed Talk.
-										</li>
-										<li style="margin-bottom:0.8em; line-height:1.6">
-											<b>M. F. Hossain</b>. &ldquo;Transverse Single-Spin Asymmetry in J/&psi; Production in p&#x20D7;p Interactions at SpinQuest.&rdquo; <i><a href="https://indico.fnal.gov/event/49432/contributions/221005/" target="_blank" rel="noopener noreferrer">New Perspectives</a></i>, Fermilab, Aug 2021. Contributed Talk.
-										</li>
-										<li style="margin-bottom:0.8em; line-height:1.6">
-											<b>M. F. Hossain</b>. &ldquo;Systematic Study of Potential False Azimuthal Asymmetries in SpinQuest.&rdquo; <i><a href="https://meetings.aps.org/Meeting/DNP20/Session/EM.8" target="_blank" rel="noopener noreferrer">APS DNP Fall Meeting</a></i>, Oct&ndash;Nov 2020. Contributed Talk.
-										</li>
-										<li style="margin-bottom:0.8em; line-height:1.6">
-											<b>M. F. Hossain</b>. &ldquo;Commissioning Trigger for SpinQuest/E1039.&rdquo; <i><a href="https://www.osti.gov/biblio/1571785" target="_blank" rel="noopener noreferrer">52nd Fermilab Users Organization Annual Meeting</a></i>. Poster.
-										</li>
-									</ol>
-								</section>
-
-							<!-- Service & Certifications -->
-								<section>
-									<header class="major">
-										<h2>Service, Leadership &amp; Certifications</h2>
-									</header>
-
-									<h3>Professional Service</h3>
-									<ul>
-										<li>Peer Reviewer &mdash; <i>European Physical Journal A</i> (EPJA), <a href="https://link.springer.com/journal/10050" target="_blank" rel="noopener noreferrer">springer.com/journal/10050</a></li>
-										<li>Elected Officer &mdash; Fermilab Student and Postdoc Association (FSPA), Oct 2021 &ndash; Oct 2022</li>
-										<li>Judge &mdash; Southwestern New Mexico Regional Science and Engineering Fair, Mar 2017</li>
-									</ul>
-
-									<h3>Certifications</h3>
-									<ul>
-										<li><a href="https://uspas.fnal.gov/" target="_blank" rel="noopener noreferrer">U.S. Particle Accelerator School (USPAS)</a>, Fermilab</li>
-										<li><a href="http://seattlesnowmass2021.net/" target="_blank" rel="noopener noreferrer">DANCE/CoDaS Computational &amp; Data Science Software Training</a> (Snowmass 2021)</li>
-										<li><a href="https://nnpss23.ucr.edu/" target="_blank" rel="noopener noreferrer">National Nuclear Physics Summer School (NNPSS 2023)</a>, UC Riverside</li>
-									</ul>
-								</section>
-
-						</div>
-					</div>
-
-				<!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
-
-							<!-- Contact -->
-								<section>
-									<header class="major">
-										<h2>Get in touch</h2>
-									</header>
-																		<ul class="contact">
-										<li class="icon solid fa-envelope"><span id="em-sidebar"></span></li>
-										<script>(function(){var u='dgy5cd',d='virginia'+'.'+'edu';document.getElementById('em-sidebar').innerHTML='<a href="mai'+'lto:'+u+'@'+d+'">'+ u +' [at] virginia [dot] edu</a>';})();</script>
-										<li class="icon solid fa-home">Department of Physics<br />University of Virginia<br />Charlottesville, VA</li>
-									</ul>
-								</section>
-
-							<!-- Footer -->
-								<footer id="footer">
-									<p class="copyright">&copy; Md Forhad Hossain. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-								</footer>
-
-						</div>
-					</div>
-
+	<nav id="navbar">
+		<div class="container">
+			<a href="#about" class="brand">Md Forhad Hossain</a>
+			<div class="nav-actions">
+				<ul>
+					<li><a class="nav-link" href="#about">About</a></li>
+					<li><a class="nav-link" href="#featured-research">Research</a></li>
+					<li><a class="nav-link" href="#skills">Skills</a></li>
+					<li><a class="nav-link" href="#experience">Experience</a></li>
+					<li><a class="nav-link" href="#awards">Awards</a></li>
+					<li><a class="nav-link" href="#education">Education</a></li>
+					<li><a class="nav-link" href="#publications">Publications</a></li>
+					<li><a class="nav-link" href="#collaborations">Collaborations</a></li>
+					<li><a class="nav-link" href="#presentations">Presentations</a></li>
+					<li><a class="nav-link" href="#service">Service</a></li>
+				</ul>
+				<button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false"><i class="fas fa-moon" aria-hidden="true"></i></button>
 			</div>
+		</div>
+	</nav>
 
-		<!-- Scripts -
+	<!-- About -->
+	<section id="about">
+		<div class="container about-layout">
+			<aside class="profile-panel" aria-label="Profile">
+					<img class="avatar" src="images/your_photo_avatar.jpg" alt="Md Forhad Hossain" />
+					<div class="profile-heading">
+						<h1 class="name">Md Forhad Hossain</h1>
+					</div>
+					<p class="profile-role">Postdoctoral Researcher at the <a href="https://www.virginia.edu/" target="_blank" rel="noopener noreferrer">University of Virginia</a>, USA.</p>
+					<ul class="profile-details">
+						<li><i class="far fa-building" aria-hidden="true"></i><a href="https://www.virginia.edu/" target="_blank" rel="noopener noreferrer">University of Virginia</a></li>
+						<li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><a href="https://www.fnal.gov/" target="_blank" rel="noopener noreferrer">Fermi National Accelerator Laboratory</a></li>
+						<li><i class="fas fa-envelope" aria-hidden="true"></i><span id="profile-email"></span></li>
+						<li><span class="profile-x-mark" aria-hidden="true">𝕏</span><a href="https://x.com/ForhadH1" target="_blank" rel="noopener noreferrer">@ForhadH1</a></li>
+					</ul>
+					<script>(function(){var u='dgy5cd',d='virginia'+'.'+'edu';document.getElementById('profile-email').innerHTML='<a href="mai'+'lto:'+u+'@'+d+'">'+u+'@'+d+'</a>';})();</script>
+					<div class="icons">
+						<a href="https://github.com/forhad-h2030" target="_blank" rel="noopener noreferrer" aria-label="github"><i class="fab fa-github"></i></a>
+						<a href="https://www.linkedin.com/in/forhad-hn/" target="_blank" rel="noopener noreferrer" aria-label="linkedin"><i class="fab fa-linkedin"></i></a>
+						<a href="https://scholar.google.com/citations?user=KOygUhMAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer" aria-label="google scholar"><i class="fas fa-graduation-cap"></i></a>
+					</div>
+				</aside>
+				<div>
+					<p class="hero-kicker"><i class="fas fa-atom" aria-hidden="true"></i> AI/ML &middot; Spin Physics &middot; Simulations</p>
+					<p>I am a Postdoctoral Researcher at the University of Virginia, advised by <a href="https://inspirehep.net/authors/1271066?ui-citation-summary=true" target="_blank" rel="noopener noreferrer">Dr. Dustin Keller</a>. I obtained my Ph.D. in Physics from New Mexico State University, advised by <a href="https://inspirehep.net/authors/994090" target="_blank" rel="noopener noreferrer">Dr. Stephen Pate</a>.</p>
+					<p>I am especially interested in machine learning and AI-based simulation optimization, and in extracting signals in regimes where traditional methods become more challenging, including tuning NMR signals in the polarized target environment.</p>
+					<p>I study polarized-target instrumentation and detector optimization for experimental nuclear particle physics, which I have been doing throughout my graduate and postdoctoral research. My research has focused on AFP spin-reversal and target operations for the <a href="https://spinquest.fnal.gov/" target="_blank" rel="noopener noreferrer">SpinQuest (E1039)</a> experiment at Fermilab, alongside ML frameworks (normalizing flows, DNNs) for combinatoric background modeling, including experimental extraction of the transverse single-spin asymmetry (TSSA) in Drell&ndash;Yan and J/&psi; production from the SpinQuest and <a href="https://www.phy.anl.gov/mep/drell-yan/" target="_blank" rel="noopener noreferrer">SeaQuest (E906)</a> experiments.</p>
+					<div class="hero-actions">
+						<a class="button" href="#featured-research"><i class="fas fa-flask" aria-hidden="true"></i> Explore research</a>
+					</div>
+				</div>
+		</div>
+	</section>
+
+	<!-- Featured Research -->
+	<section id="featured-research">
+		<div class="container section-grid">
+			<h2 class="heading">Featured Research</h2>
+			<div>
+				<p class="research-intro">A visual overview of my work at the intersection of nucleon-spin physics, polarized-target instrumentation, and machine learning for fixed-target experiments.</p>
+				<div class="research-grid">
+					<a class="research-card" href="spinquest_bkg.html">
+						<div class="research-visual contain"><img src="images/spinquest_bkg.jpg" alt="SpinQuest signal and background classification pipeline" loading="lazy" /></div>
+						<div class="research-content">
+							<p class="research-eyebrow">Dimuon analysis &amp; background modeling</p>
+							<h3>SpinQuest Signal and Background Classifier</h3>
+							<p>A multi-stage DNN pipeline that classifies J/&psi;, &psi;&prime;, Drell&ndash;Yan, and combinatoric events after tuning simulations to data.</p>
+							<span class="research-link">Explore the project <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+						</div>
+					</a>
+					<a class="research-card" href="https://indico.fnal.gov/event/72820/contributions/341259/" target="_blank" rel="noopener noreferrer">
+						<div class="research-visual contain"><img src="images/comb_mass_seed_untuned_vs_exp.png" alt="Dimuon invariant mass distribution comparing untuned muon-gun Monte Carlo to experimental combinatoric-tagged events" loading="lazy" /></div>
+						<div class="research-content">
+							<p class="research-eyebrow">Iterative ML &amp; Monte Carlo tuning</p>
+							<h3>An Iterative Machine Learning Framework for Event Classification and Monte Carlo Tuning in SpinQuest</h3>
+							<p>An iterative loop between ML classification and Monte Carlo tuning: classifier-tagged combinatoric events guide the tuning of simulated dimuon-mass and kinematic distributions to match data, which in turn sharpens the next round of classification.</p>
+							<span class="research-link">View the presentation <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+						</div>
+					</a>
+					<a class="research-card" href="https://www.sciencedirect.com/science/article/abs/pii/S0168900226004961?via%3Dihub" target="_blank" rel="noopener noreferrer">
+						<div class="research-visual afp-visual"><img src="images/afp-spin-manipulation.gif" alt="Animated NMR spectra from an adiabatic fast passage spin manipulation sequence" loading="lazy" /></div>
+						<div class="research-content">
+							<p class="research-eyebrow">Polarized targets &amp; NMR</p>
+							<h3>Adiabatic Fast Passage Spin Manipulation</h3>
+							<p>Rapid polarization reversal and spin-population manipulation in solid targets, with AFP efficiency and vector/tensor polarization measurements at 5 T and 1 K.</p>
+							<span class="research-link">Read the publication <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+						</div>
+					</a>
+					<a class="research-card" href="rus.html">
+						<div class="research-visual rus-visual" role="img" aria-label="Fun4All RUS input and output manager code graphic">
+							<span class="rus-code-icon" aria-hidden="true">&lt;/&gt;</span>
+							<span class="rus-manager">Fun4AllRUSInputManager</span>
+							<span class="rus-manager">Fun4AllRUSOutputManager</span>
+						</div>
+						<div class="research-content">
+							<p class="research-eyebrow">Scientific software</p>
+							<h3>RUS: Fun4All I/O for E1039</h3>
+							<p>A lightweight ROOT-based interface that integrates reconstruction and event extraction workflows into the Fun4All framework.</p>
+							<span class="research-link">Explore the project <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Skills -->
+	<section id="skills">
+		<div class="container section-grid">
+			<h2 class="heading">Skills</h2>
+			<div class="two-col">
+				<div class="col-list">
+					<h3 class="subheading">Machine Learning &amp; AI</h3>
+					<ul>
+						<li>Normalizing flows &amp; generative models</li>
+						<li>Deep neural networks (DNNs)</li>
+						<li>Bayesian unfolding</li>
+					</ul>
+				</div>
+				<div class="col-list">
+					<h3 class="subheading">Programming Languages</h3>
+					<ul>
+						<li>C / C++</li>
+						<li>Python (NumPy, Pandas, SciPy, Scikit-learn, PyTorch)</li>
+						<li>Bash scripting</li>
+						<li>LabVIEW, LaTeX</li>
+					</ul>
+				</div>
+				<div class="col-list">
+					<h3 class="subheading">HEP &amp; Scientific Tools</h3>
+					<ul>
+						<li>ROOT, GEANT4</li>
+						<li>Fun4All, RooUnfold</li>
+						<li>Scikit-HEP</li>
+						<li>HPC: Rivanna &amp; FermiGrid</li>
+					</ul>
+				</div>
+				<div class="col-list">
+					<h3 class="subheading">Hardware &amp; Instrumentation</h3>
+					<ul>
+						<li>NIM, CAMAC, VME electronics</li>
+						<li>PMT optimization</li>
+						<li>Polarized cryogenic targets</li>
+						<li>NMR polarimetry &amp; AFP spin-reversal</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Experience -->
+	<section id="experience">
+		<div class="container section-grid">
+			<h2 class="heading">Experience</h2>
+			<div class="experience-list">
+				<article class="experience-item">
+					<div class="experience-rail" aria-hidden="true"><span class="experience-dot filled"></span></div>
+					<div class="experience-card">
+						<div class="experience-card-head center-logo">
+							<a class="experience-logo-link large-logo-link" href="https://www.virginia.edu/" target="_blank" rel="noopener noreferrer"><img class="experience-logo large-logo" src="images/logo_uva.png" alt="University of Virginia" /></a>
+							<div class="experience-summary">
+								<p class="experience-title">Postdoctoral Researcher</p>
+								<p class="experience-company"><a href="https://www.virginia.edu/" target="_blank" rel="noopener noreferrer">University of Virginia</a></p>
+								<p class="experience-meta">Jun 2024 &ndash; Present<span class="middot-divider">&middot;</span>Charlottesville, VA</p>
+							</div>
+						</div>
+						<p class="experience-description">Faculty Advisor: <a href="https://inspirehep.net/authors/1271066?ui-citation-summary=true" target="_blank" rel="noopener noreferrer">Dr. Dustin Keller</a>. Leading polarized target system operations and AFP spin-reversal development for the SpinQuest (E1039) experiment at Fermilab. Developing ML frameworks (normalizing flows, DNNs) for combinatoric background modeling to support transverse single-spin asymmetry (TSSA) extraction from Drell&ndash;Yan and J/&psi; processes. Serving as Run and Analysis Coordinator: overseeing daily operations, data-quality monitoring, and coordination with the Fermilab Accelerator Division.</p>
+						<span class="tag">normalizing flows</span><span class="tag">DNNs</span><span class="tag">polarized targets</span><span class="tag">AFP / NMR</span>
+					</div>
+				</article>
+
+				<article class="experience-item">
+					<div class="experience-rail" aria-hidden="true"><span class="experience-dot"></span></div>
+					<div class="experience-card">
+						<div class="experience-card-head">
+							<a class="experience-logo-link experience-ura-logo-link" href="https://ura-hq.org/high-energy-physics-user-community/ura-visiting-scholars-program/" target="_blank" rel="noopener noreferrer"><img class="experience-logo experience-ura-logo" src="images/logo_ura.png" alt="Universities Research Association" /></a>
+							<div class="experience-summary">
+								<p class="experience-title">URA Visiting Scholar</p>
+								<p class="experience-company"><a href="https://ura-hq.org/" target="_blank" rel="noopener noreferrer">Universities Research Association</a></p>
+								<p class="experience-meta">Apr 2026 &ndash; Present<span class="middot-divider">&middot;</span>Batavia, IL</p>
+							</div>
+						</div>
+						<p class="experience-description">Selected for the Universities Research Association Visiting Scholars Program (VSP), supporting continued on-site research at Fermilab as part of the SpinQuest collaboration.</p>
+					</div>
+				</article>
+
+				<article class="experience-item">
+					<div class="experience-rail" aria-hidden="true"><span class="experience-dot"></span></div>
+					<div class="experience-card">
+						<div class="experience-card-head">
+							<a class="experience-logo-link compact-logo-link" href="https://www.fnal.gov/" target="_blank" rel="noopener noreferrer"><img class="experience-logo compact-logo" src="images/logo_fnal.png" alt="Fermi National Accelerator Laboratory" /></a>
+							<div class="experience-summary">
+								<p class="experience-company primary"><a href="https://www.fnal.gov/" target="_blank" rel="noopener noreferrer">Fermi National Accelerator Laboratory</a></p>
+								<p class="experience-meta">Feb 2018 &ndash; Present<span class="middot-divider">&middot;</span>Batavia, IL</p>
+							</div>
+						</div>
+						<div class="experience-role-list">
+							<div class="experience-role">
+								<p class="experience-role-title">Visiting Postdoctoral Research Associate</p>
+								<p class="experience-meta">Jun 2024 &ndash; Present</p>
+								<p class="experience-description">Visiting researcher stationed at Fermilab, collaborating on-site with the SpinQuest experiment team.</p>
+							</div>
+							<div class="experience-role">
+								<p class="experience-role-title">Visiting Graduate Student Researcher</p>
+								<p class="experience-meta">Feb 2018 &ndash; May 2024</p>
+								<p class="experience-description">Stationed on-site at Fermilab as the formal visiting appointment underlying the NMSU graduate research below: led maintenance of PMT-based trigger detectors, configured triggers using NIM electronics, and developed C++/Python efficiency-measurement software for SpinQuest.</p>
+							</div>
+							</div>
+					</div>
+				</article>
+
+				<article class="experience-item">
+					<div class="experience-rail" aria-hidden="true"><span class="experience-dot"></span></div>
+					<div class="experience-card">
+						<div class="experience-card-head center-logo">
+							<a class="experience-logo-link large-logo-link" href="https://www.nmsu.edu/" target="_blank" rel="noopener noreferrer"><img class="experience-logo large-logo" src="images/logo_nmsu.png" alt="New Mexico State University" /></a>
+							<div class="experience-summary">
+								<p class="experience-title">NMSU Graduate Appointments</p>
+								<p class="experience-company"><a href="https://www.nmsu.edu/" target="_blank" rel="noopener noreferrer">New Mexico State University</a></p>
+								<p class="experience-meta">Aug 2016 &ndash; May 2024<span class="middot-divider">&middot;</span>Las Cruces, NM</p>
+							</div>
+						</div>
+						<div class="experience-role-list">
+							<div class="experience-role">
+								<p class="experience-role-title">Graduate Research Assistant</p>
+								<p class="experience-meta">May 2018 &ndash; May 2024</p>
+								<p class="experience-description">Applied Bayesian Iterative Unfolding (RooUnfold) and machine learning to extract angular distributions of Drell&ndash;Yan dimuons in p+Fe interactions at 120 GeV for my PhD thesis. Served as onsite hardware expert for NIM, CAMAC, and VME-based trigger detector installation for the SpinQuest experiment. Developed Python and C++ pipelines for high-voltage PMT optimization and data quality analysis.</p>
+								<span class="tag">ROOT / GEANT4</span><span class="tag">RooUnfold</span><span class="tag">C++ / Python</span><span class="tag">VME / NIM hardware</span>
+							</div>
+							<div class="experience-role">
+								<p class="experience-role-title">Graduate Teaching Assistant</p>
+								<p class="experience-meta">Aug 2016 &ndash; May 2018</p>
+								<p class="experience-description">Instructed introductory physics laboratory courses and provided individual tutoring for undergraduate students.</p>
+							</div>
+						</div>
+					</div>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<!-- Awards -->
+	<section id="awards">
+		<div class="container section-grid">
+			<h2 class="heading">Honors &amp; Awards</h2>
+			<div>
+				<ul class="edu-mini" style="margin:0;">
+					<li>
+						<i class="fas fa-award"></i>
+						<div>
+							<p class="course">URA Visiting Scholars Program (VSP) Award, $20,000</p>
+							<p class="inst">Universities Research Association / Fermilab, 2026</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<!-- Education -->
+	<section id="education">
+		<div class="container section-grid">
+			<h2 class="heading">Education</h2>
+			<div>
+				<p><strong>New Mexico State University</strong> &middot; May 2018 &ndash; May 2024<br />
+				Ph.D. in Physics under the supervision of <a href="https://inspirehep.net/authors/994090" target="_blank" rel="noopener noreferrer">Dr. Stephen Pate</a>, applying Bayesian Iterative Unfolding and machine learning to extract angular distributions of Drell&ndash;Yan dimuons in proton&ndash;iron interactions at 120 GeV. Served as onsite hardware expert for the SpinQuest experiment trigger system installation (NIM, CAMAC, VME electronics) and developed Python/C++ pipelines for PMT optimization and data quality monitoring.</p>
+				<p><em>Ph.D. Thesis: &ldquo;Angular Distribution of Dimuons from Drell&ndash;Yan Production in p+Fe Interactions at 120 GeV Beam Energy&rdquo;</em></p>
+				<p><em>M.S. in Physics, New Mexico State University, 2018&ndash;2021</em></p>
+				<p style="margin-top:1.5em;"><strong>Jagannath University, Dhaka, Bangladesh</strong> &middot; 2006 &ndash; 2014<br />
+				B.Sc. in Physics (2006&ndash;2012) &nbsp;&bull;&nbsp; M.Sc. in Physics (2012&ndash;2014)</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Publications -->
+	<section id="publications">
+		<div class="container section-grid">
+			<h2 class="heading">Publications</h2>
+			<div>
+				<div class="publication-tools" aria-label="Filter publications by research topic">
+					<div class="filter-group">
+						<button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
+						<button class="filter-button" type="button" data-filter="spin">Spin physics</button>
+						<button class="filter-button" type="button" data-filter="drell-yan">Drell&ndash;Yan</button>
+						<button class="filter-button" type="button" data-filter="quarkonium">Quarkonium</button>
+						<button class="filter-button" type="button" data-filter="instrumentation">Instrumentation</button>
+						<button class="filter-button" type="button" data-filter="analysis">Analysis methods</button>
+					</div>
+					<span class="publication-count" aria-live="polite">Showing all 7 entries</span>
+				</div>
+				<h3 class="pub-group">Published</h3>
+				<ol class="pub-list">
+					<li data-topic="instrumentation spin"><b>M. F. Hossain</b> <i>et al.</i> &ldquo;Adiabatic Fast Passage Spin Manipulation Measurements in Solid Polarized Targets.&rdquo; <i>Nuclear Instruments and Methods in Physics Research A</i>, 2026.<div class="pub-actions"><a class="pub-action" href="https://www.sciencedirect.com/science/article/abs/pii/S0168900226004961?via%3Dihub" target="_blank" rel="noopener noreferrer"><i class="far fa-file-alt" aria-hidden="true"></i> Journal</a><a class="pub-action" href="https://arxiv.org/abs/2604.02365" target="_blank" rel="noopener noreferrer"><i class="far fa-file-alt" aria-hidden="true"></i> arXiv</a></div></li>
+					<li data-topic="drell-yan spin">C. H. Leung <i>et al.</i> (SeaQuest Collaboration). &ldquo;Final SeaQuest Results on the Flavor Asymmetry of the Proton Light-Quark Sea with Proton-Induced Drell&ndash;Yan Process.&rdquo; (2025), <a href="https://arxiv.org/abs/2512.17564" target="_blank" rel="noopener noreferrer">arXiv:2512.17564</a><div class="pub-actions"><a class="pub-action" href="https://arxiv.org/abs/2512.17564" target="_blank" rel="noopener noreferrer"><i class="far fa-file-alt" aria-hidden="true"></i> arXiv</a></div></li>
+					<li data-topic="quarkonium">C. H. Leung <i>et al.</i> (SeaQuest Collaboration). &ldquo;Measurement of J/&psi; and &psi;(2S) Production in p+p and p+d Interactions at 120 GeV.&rdquo; (2024), <a href="https://arxiv.org/abs/2406.11459" target="_blank" rel="noopener noreferrer">arXiv:2406.11459</a><div class="pub-actions"><a class="pub-action" href="https://arxiv.org/abs/2406.11459" target="_blank" rel="noopener noreferrer"><i class="far fa-file-alt" aria-hidden="true"></i> arXiv</a></div></li>
+					<li data-topic="analysis">S. Pate, A. Pun, <b>M. F. Hossain</b> <i>et al.</i> (SeaQuest Collaboration). &ldquo;Estimation of Combinatoric Background in SeaQuest using an Event-Mixing Method.&rdquo; (2023), <a href="https://arxiv.org/abs/2302.04152" target="_blank" rel="noopener noreferrer">arXiv:2302.04152</a><div class="pub-actions"><a class="pub-action" href="https://arxiv.org/abs/2302.04152" target="_blank" rel="noopener noreferrer"><i class="far fa-file-alt" aria-hidden="true"></i> arXiv</a></div></li>
+					<li data-topic="spin drell-yan">A. Chen <i>et al.</i> (SeaQuest Collaboration). &ldquo;Probing Nucleon&rsquo;s Spin Structures with Polarized Drell&ndash;Yan in the Fermilab SpinQuest Experiment.&rdquo; (2019), <a href="https://arxiv.org/abs/1901.09994" target="_blank" rel="noopener noreferrer">arXiv:1901.09994</a><div class="pub-actions"><a class="pub-action" href="https://arxiv.org/abs/1901.09994" target="_blank" rel="noopener noreferrer"><i class="far fa-file-alt" aria-hidden="true"></i> arXiv</a></div></li>
+				</ol>
+				<p><em>Full list of papers: <a href="https://scholar.google.com/citations?user=KOygUhMAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar Profile</a></em></p>
+
+				<h3 class="pub-group">Submitted Manuscripts</h3>
+				<ol class="pub-list">
+					<li data-topic="drell-yan analysis">K. Nagai, <b>M. F. Hossain</b>, A. Pun, K. Nakano, K. Liu, C. A. Aidala <i>et al.</i> (SeaQuest Collaboration). &ldquo;Measurements of Angular Distributions of Drell&ndash;Yan Dimuons in p+p and p+d Interactions at 120 GeV/c.&rdquo; <i>Submitted to Physical Review Letters</i>, 2026, <a href="https://arxiv.org/abs/2601.16410" target="_blank" rel="noopener noreferrer">arXiv:2601.16410</a><div class="pub-actions"><a class="pub-action" href="https://arxiv.org/abs/2601.16410" target="_blank" rel="noopener noreferrer"><i class="far fa-file-alt" aria-hidden="true"></i> arXiv</a></div></li>
+				</ol>
+
+				<h3 class="pub-group">In Preparation</h3>
+				<ol class="pub-list">
+					<li data-topic="drell-yan analysis"><b>M. F. Hossain</b> <i>et al.</i> (SeaQuest Collaboration). &ldquo;Angular Distribution of Drell&ndash;Yan Muon Pairs Produced in Proton&ndash;Iron Interactions with a 120 GeV Proton Beam at SeaQuest.&rdquo; <i>Intended for Physical Review Letters</i>, 2026.</li>
+				</ol>
+			</div>
+		</div>
+	</section>
+
+	<!-- Collaborations -->
+	<section id="collaborations">
+		<div class="container section-grid">
+			<h2 class="heading">Collaborations</h2>
+			<div class="two-col">
+				<div class="col-list">
+					<h3 class="subheading"><a href="https://spinquest.fnal.gov/" target="_blank" rel="noopener noreferrer">SpinQuest (E1039), Fermilab</a></h3>
+					<p>Fixed-target Drell&ndash;Yan experiment measuring the transverse single-spin asymmetry (TSSA) to extract the Sivers function of sea quarks, using a 120 GeV polarized proton beam with NH&#8323;/ND&#8323; cryogenic targets at Fermilab.</p>
+				</div>
+				<div class="col-list">
+					<h3 class="subheading"><a href="https://www.phy.anl.gov/mep/drell-yan/" target="_blank" rel="noopener noreferrer">SeaQuest (E906), Fermilab</a></h3>
+					<p>Fixed-target Drell&ndash;Yan experiment measuring the cross-section ratio p+d/p+p to determine the antiquark flavor asymmetry d&#773;/&#363; in the proton sea at Fermilab.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Presentations -->
+	<section id="presentations">
+		<div class="container section-grid">
+			<h2 class="heading">Presentations</h2>
+			<div>
+				<div class="talk-grid" aria-label="Featured presentations">
+					<a class="talk-card" href="https://indico.fnal.gov/event/72820/contributions/341259/" target="_blank" rel="noopener noreferrer">
+						<span class="talk-date">Jul 2026 &middot; DPF, Fermilab</span>
+						<h3>An Iterative Machine Learning Framework for Event Classification and Monte Carlo Tuning in SpinQuest</h3>
+						<p><i class="fas fa-microphone" aria-hidden="true"></i> Contributed talk</p>
+					</a>
+					<a class="talk-card" href="https://www.aps.org/events/2025/division-nuclear-physics-2025" target="_blank" rel="noopener noreferrer">
+						<span class="talk-date">2025 &middot; APS DNP</span>
+						<h3>Machine Learning Approaches for Background Modeling and Dimuon Classification in SpinQuest</h3>
+						<p><i class="fas fa-microphone" aria-hidden="true"></i> Contributed talk</p>
+					</a>
+					<a class="talk-card" href="https://indico.jlab.org/event/986/" target="_blank" rel="noopener noreferrer">
+						<span class="talk-date">Oct 2025 &middot; Jefferson Lab</span>
+						<h3>Hardware (AFP, ssRF)</h3>
+						<p><i class="fas fa-microphone" aria-hidden="true"></i> b1/Azz Tensor Collaboration Meeting</p>
+					</a>
+					<a class="talk-card" href="https://www.aps.org/events/2025/joint-meeting" target="_blank" rel="noopener noreferrer">
+						<span class="talk-date">Mar 2025 &middot; Anaheim</span>
+						<h3>Classifying Dimuons from Proton&ndash;Proton Scattering Using ML Techniques</h3>
+						<p><i class="fas fa-microphone" aria-hidden="true"></i> APS Global Physics Summit</p>
+					</a>
+				</div>
+				<h3 class="talk-list-heading">Complete presentation record</h3>
+				<ol class="pub-list">
+					<li><b>M. F. Hossain</b>. &ldquo;An Iterative Machine Learning Framework for Event Classification and Monte Carlo Tuning in SpinQuest.&rdquo; <i><a href="https://indico.fnal.gov/event/72820/contributions/341259/" target="_blank" rel="noopener noreferrer">Division of Particles and Fields (DPF) Meeting</a></i>, Fermilab, Jul 2026. Contributed Talk.</li>
+					<li><b>M. F. Hossain</b>. &ldquo;Machine Learning Approaches for Background Modeling and Dimuon Classification in SpinQuest.&rdquo; <i><a href="https://www.aps.org/events/2025/division-nuclear-physics-2025" target="_blank" rel="noopener noreferrer">APS Division of Nuclear Physics (DNP) Fall Meeting</a></i>, 2025. Contributed Talk.</li>
+					<li><b>M. F. Hossain</b>. &ldquo;Hardware (AFP, ssRF).&rdquo; <i><a href="https://indico.jlab.org/event/986/" target="_blank" rel="noopener noreferrer">b1/Azz Tensor Collaboration Meeting</a></i>, Jefferson Lab, Oct 2025. Contributed Talk.</li>
+					<li><b>M. F. Hossain</b>. &ldquo;Classifying Dimuons from Proton&ndash;Proton Scattering Using ML Techniques.&rdquo; <i><a href="https://www.aps.org/events/2025/joint-meeting" target="_blank" rel="noopener noreferrer">APS Global Physics Summit</a></i>, Anaheim, CA, Mar 2025. Contributed Talk.</li>
+					<li><b>M. F. Hossain</b>. &ldquo;SpinQuest in 10 Minutes.&rdquo; <i><a href="https://indico.fnal.gov/event/64625/contributions/295295/" target="_blank" rel="noopener noreferrer">New Perspectives</a></i>, Fermilab, Jul 2024. Contributed Talk.</li>
+					<li><b>M. F. Hossain</b>. &ldquo;Angular Distribution of Dimuons from Drell&ndash;Yan Production in p+Fe at 120 GeV.&rdquo; <i><a href="https://indico.frib.msu.edu/event/66/" target="_blank" rel="noopener noreferrer">APS DNP &amp; JPS Fall Meeting</a></i>, 2023. Contributed Talk.</li>
+					<li><b>M. F. Hossain</b>. &ldquo;Iterative Unfolding of Angular Distribution of Drell&ndash;Yan Production in p+Fe at 120 GeV.&rdquo; <i><a href="https://indico.fnal.gov/event/59506/contributions/269971/" target="_blank" rel="noopener noreferrer">New Perspectives</a></i>, Fermilab, Jun 2023. Contributed Talk.</li>
+					<li><b>M. F. Hossain</b>. &ldquo;Measurement of the Angular Distribution of Drell&ndash;Yan Production in p+Fe at 120 GeV.&rdquo; <i><a href="https://meetings.aps.org/Meeting/DNP22/Session/LI.2" target="_blank" rel="noopener noreferrer">APS DNP Fall Meeting</a></i>, Oct 2022. Contributed Talk.</li>
+					<li><b>M. F. Hossain</b>. &ldquo;Transverse Single-Spin Asymmetry in J/&psi; Production in p&#x20D7;p Interactions at SpinQuest.&rdquo; <i><a href="https://indico.fnal.gov/event/49432/contributions/221005/" target="_blank" rel="noopener noreferrer">New Perspectives</a></i>, Fermilab, Aug 2021. Contributed Talk.</li>
+					<li><b>M. F. Hossain</b>. &ldquo;Systematic Study of Potential False Azimuthal Asymmetries in SpinQuest.&rdquo; <i><a href="https://meetings.aps.org/Meeting/DNP20/Session/EM.8" target="_blank" rel="noopener noreferrer">APS DNP Fall Meeting</a></i>, Oct&ndash;Nov 2020. Contributed Talk.</li>
+					<li><b>M. F. Hossain</b>. &ldquo;Commissioning Trigger for SpinQuest/E1039.&rdquo; <i><a href="https://www.osti.gov/biblio/1571785" target="_blank" rel="noopener noreferrer">52nd Fermilab Users Organization Annual Meeting</a></i>. Poster.</li>
+				</ol>
+			</div>
+		</div>
+	</section>
+
+	<!-- Service -->
+	<section id="service">
+		<div class="container section-grid">
+			<h2 class="heading">Service &amp; Certifications</h2>
+			<div class="two-col">
+				<div class="col-list">
+					<h3 class="subheading">Professional Service</h3>
+					<ul>
+						<li>Peer Reviewer, <i>European Physical Journal A</i> (EPJA), <a href="https://link.springer.com/journal/10050" target="_blank" rel="noopener noreferrer">springer.com/journal/10050</a></li>
+						<li>Elected Officer, Fermilab Student and Postdoc Association (FSPA), Oct 2021 &ndash; Oct 2022</li>
+						<li>Judge, Southwestern New Mexico Regional Science and Engineering Fair, Mar 2017</li>
+					</ul>
+				</div>
+				<div class="col-list">
+					<h3 class="subheading">Certifications</h3>
+					<ul>
+						<li><a href="https://uspas.fnal.gov/" target="_blank" rel="noopener noreferrer">U.S. Particle Accelerator School (USPAS)</a>, Fermilab</li>
+						<li><a href="https://seattlesnowmass2021.net/" target="_blank" rel="noopener noreferrer">DANCE/CoDaS Computational &amp; Data Science Software Training</a> (Snowmass 2021)</li>
+						<li><a href="https://nnpss23.ucr.edu/" target="_blank" rel="noopener noreferrer">National Nuclear Physics Summer School (NNPSS 2023)</a>, UC Riverside</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<p>&copy; Md Forhad Hossain &middot; Department of Physics, University of Virginia, Charlottesville, VA</p>
+		<p class="last-updated">Last updated <time datetime="2026-08-06">August 2026</time></p>
+	</footer>
+
+	<script>
+		(function () {
+			var root = document.documentElement;
+			var themeToggle = document.getElementById('theme-toggle');
+			var themeMeta = document.querySelector('meta[name="theme-color"]');
+
+			function syncThemeControl() {
+				var isDark = root.getAttribute('data-theme') === 'dark';
+				themeToggle.setAttribute('aria-pressed', String(isDark));
+				themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+				themeToggle.innerHTML = '<i class="fas ' + (isDark ? 'fa-sun' : 'fa-moon') + '" aria-hidden="true"></i>';
+				if (themeMeta) themeMeta.setAttribute('content', isDark ? '#0c1219' : '#ffffff');
+			}
+
+			if (themeToggle) {
+				syncThemeControl();
+				themeToggle.addEventListener('click', function () {
+					var useDark = root.getAttribute('data-theme') !== 'dark';
+					if (useDark) root.setAttribute('data-theme', 'dark');
+					else root.removeAttribute('data-theme');
+					try { localStorage.setItem('portfolio-theme', useDark ? 'dark' : 'light'); } catch (error) {}
+					syncThemeControl();
+				});
+			}
+
+			var filterButtons = Array.prototype.slice.call(document.querySelectorAll('.filter-button'));
+			var publicationItems = Array.prototype.slice.call(document.querySelectorAll('#publications li[data-topic]'));
+			var publicationCount = document.querySelector('.publication-count');
+
+			filterButtons.forEach(function (button) {
+				button.addEventListener('click', function () {
+					var selected = button.getAttribute('data-filter');
+					var visible = 0;
+
+					filterButtons.forEach(function (candidate) {
+						candidate.setAttribute('aria-pressed', String(candidate === button));
+					});
+
+					publicationItems.forEach(function (item) {
+						var topics = (item.getAttribute('data-topic') || '').split(/\s+/);
+						var show = selected === 'all' || topics.indexOf(selected) !== -1;
+						item.hidden = !show;
+						if (show) visible += 1;
+					});
+
+					document.querySelectorAll('#publications .pub-list').forEach(function (list) {
+						var hasVisibleItem = Array.prototype.some.call(list.querySelectorAll('li[data-topic]'), function (item) { return !item.hidden; });
+						list.hidden = !hasVisibleItem;
+						if (list.previousElementSibling && list.previousElementSibling.classList.contains('pub-group')) {
+							list.previousElementSibling.hidden = !hasVisibleItem;
+						}
+					});
+
+					if (publicationCount) publicationCount.textContent = selected === 'all' ? 'Showing all ' + visible + ' entries' : 'Showing ' + visible + ' matching ' + (visible === 1 ? 'entry' : 'entries');
+				});
+			});
+		})();
+	</script>
+
+</body>
+</html>
